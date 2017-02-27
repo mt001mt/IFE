@@ -152,11 +152,22 @@
         <label>请重复输入密码：<input type="password" name="password-dup"/></label>
         <p>密码请为6-16位英文数字</p>
         <br/>
-        <label>性别<input type="radio" name="gender" value="male" checked /><input type="radio" name="gender" value="female"/></label>
-        <label>城市：<input type="text" name="city" value="北京"/></label>
-        <label>爱好：<input type="checkbox" name="hobby" value="sport" />运动<input type="checkbox" name="hobby" value="art" />艺术<input type="checkbox" name="hobby" value="science" />科学
-        <label>个人描述：<textarea spans="2" >这是一个多行输入框，请输入您的个人描述</textarea>
+        <label>性别</label>
+        <label><input type="radio" name="gender" value="male" checked />男</label>
+        <label><input type="radio" name="gender" value="female"/>女</label>
+        <label>城市：<input type="text" name="city" list="city"/></label>
+        <label>爱好：</label>
+        <label><input type="checkbox" name="hobby" value="sport" />运动</label>
+        <label><input type="checkbox" name="hobby" value="art" />艺术</label>
+        <label><input type="checkbox" name="hobby" value="science" />科学</label>
+        <label>个人描述：<textarea spans="2">这是一个多行输入框，请输入您的个人描述</textarea></label>
         <input type="submit" value="确认提交" />
+    </form>
+    <datalist id="city">
+        <option value="北京" />
+        <option value="上海" />
+        <option value="广州" />
+    </datalist>
 </aside>
 <footer>
 版权所有©
