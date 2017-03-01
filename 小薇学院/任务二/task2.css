@@ -1,0 +1,196 @@
+@charset "utf-8";
+/*本css是按照网页上元素的先后顺序编制的*/
+/*purify*/
+body,div,ul,li,p,figure{
+	margin:0;
+	padding:0;
+}
+/*全局格式*/
+html{
+    font-family:Arial, "Microsoft YaHei",sans-serif;
+    background:#CCC;
+}
+/*头部格式*/
+header nav ul{
+	text-align:right;
+    background:#333 url(pic/baidu_logo.png) left 45% no-repeat;
+    background-size:160px 90px;
+    padding-left:20px;
+    padding-right:10px;
+    background-origin:content-box;
+}
+header nav li{
+	display:inline-block;
+	line-height:50px;
+	padding:0 5px;
+    font-size:12px;
+}
+header nav li:before{
+    content:"•";
+    font-size:16px;
+    vertical-align:middle;
+    padding-right:8px;
+}
+header nav li a{
+	color:white;
+	text-decoration:none;
+    /*font-weight:bold;*/
+}
+/*header nav li a:visited{
+    color:#DDD;
+}*/
+/*************************************************/
+/*************************************************/
+/*正文格式*/
+article header h3{
+	color:#666;
+    font-weight:600;
+}
+article header p{
+	font-size:11px;
+    color:#666;
+    font-weight:500;
+}
+/*article section{
+	font-weight:bold;
+}*/
+article p{
+    margin:16px 0;
+    line-height:1.5;
+}
+/*给正文内容部添加边框*/
+article,
+body>section{
+	border-top:#cdcdcd 1px solid;
+	border-right:#929292 2px solid;
+	border-bottom:#929292 2px solid;
+	border-left:#cdcdcd 1px solid;
+	margin:15px;
+	padding:15px;
+    background:white;
+}
+/*第一段p缩进*/
+article section p:first-of-type,
+article figure+p{
+    text-indent:1.6em;
+}
+/*文章中的列表、图片格式*/
+article ul li{
+    list-style:none;
+    margin:10px 0 10px 20px;
+}
+/*图片区域的图片格式*/
+.pic figure{
+    border:#999 1px solid;
+    padding:10px;
+    float:left;
+    clear:left;
+    margin:10px;
+}
+.pic figcaption{
+    text-align:center;
+    font-size:12px;
+}
+.pic img{
+    margin-top:10px;
+    height:50px;
+    width:52px;
+}
+.pic:after{/*用伪元素撑开section*/
+    content:"";
+    display:block;
+    clear:both;
+}
+/*最后一篇文章的格式*/
+article ol li{
+    line-height:30px;
+    margin-left:20px;
+}
+article table{
+    width:100%;
+    border-collapse:collapse;
+    border-color:#999;
+    font-size:14px;
+}
+article table thead{
+    background:black;
+    text-align:left;
+    color:white;
+}
+article table tfoot{
+    background:#999;
+}
+article table td,
+article table th{
+    padding:3px;
+}
+/*************************************************/
+/*************************************************/
+/*侧栏的格式*/
+body>aside{
+	border-top:#cdcdcd 1px solid;
+	border-right:#929292 2px solid;
+	border-bottom:#929292 2px solid;
+	border-left:#cdcdcd 1px solid;
+	margin:15px;
+	padding:15px;
+    background:white;
+}
+aside header h2{
+    border-left:#999 2px solid;
+    padding-left:15px;
+    font-size:16px;
+}
+aside>h2{
+    display:none;
+}
+aside form{
+    line-height:32px;
+    font-size:14px;
+}
+aside form li{
+    list-style:none;
+}
+aside form li.desc{
+    color:#999;
+    padding-left:30%;
+    margin-bottom:10px;
+    margin-left:10px;/*相对于label[for]的padding-right:10px*/
+}
+aside form label[for]{
+    display:inline-block;
+    width:30%;
+    text-align:right;
+    padding-right:10px;
+}
+aside form label[for="text"]{
+    vertical-align:top;
+    line-height:1.5;
+}
+aside form textarea{
+    width:65%;
+    height:100px;
+    font-size:16px;
+    font-weight:bold;
+}
+aside form input[type="submit"]{
+    width:100%;
+    height:35px;
+    color:white;
+    background:blue;
+    border:none;
+    border-radius:8px;
+}
+/*************************************************/
+/*************************************************/
+/*脚注的格式*/
+footer{
+    color:white;
+    font-weight:bold;
+    font-size:12px;
+    text-align:center;
+    background:black;
+    width:100%;
+    height:50px;
+    line-height:40px;
+}
