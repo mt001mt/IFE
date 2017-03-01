@@ -61,10 +61,7 @@ article p{
 /*给正文内容部添加边框*/
 article,
 body>section{
-	border-top:#cdcdcd 1px solid;
-	border-right:#929292 2px solid;
-	border-bottom:#929292 2px solid;
-	border-left:#cdcdcd 1px solid;
+	box-shadow:#929292 4px 4px 2px;
 	margin:15px;
 	padding:15px;
     background:white;
