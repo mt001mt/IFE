@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>createPic By MT</title>
+<style>
+
+</style>
+</head>
+
+<body>
+<canvas height="100" width="100"></canvas>
+</body>
+</html>
+<script>
+//这是用canvas功能生成两边的两个角部图形
+window.onload=function(){	
+	var pic=document.createElement("canvas");
+	pic.width="50";
+	pic.height="50";
+	var context=pic.getContext("2d");
+	context.strokeStyle="#fc0";
+	context.fillStyle="#fc0";
+	context.beginPath();
+	context.lineTo(0,50);
+	context.arc(0,0,50,1.5*Math.PI,0,true);
+	context.lineTo(0,0);
+	context.stroke();
+	context.fill();
+	document.body.appendChild(pic);
+}
+
+</script>
