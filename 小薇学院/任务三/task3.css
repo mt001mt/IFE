@@ -1,0 +1,59 @@
+@charset "utf-8";
+body{
+    padding:20px;
+}
+div{
+    border:black 1px solid;
+    box-sizing:border-box;
+}
+div.team{
+    padding:20px;
+    background:#eee;
+    border:1px solid #999;
+    overflow:hidden;
+}
+div.team>div{
+    background-color:white;
+    padding:20px;
+}
+div.teamname{
+    width:200px;
+    height:122px;
+    float:left;
+    background-image:url(pic/team_logo.jpg);
+    background-size:80px 80px;
+    background-repeat:no-repeat;
+    background-positon:left middle;
+    background-origin:content-box;
+}
+div.teamintr{
+    margin-left:220px;
+    margin-right:140px;
+}
+div.teammemb{
+    width:120px;
+    float:right;
+    
+}
+div.teamintr p{
+    font-size:22px;
+    text-indent:1.6em;
+    white-space:pre-wrap;
+}
+div.teamname img{
+    float:left;
+}
+div.teamname p{
+    font:24px LiSu, SimSun;
+    text-align:right;
+    padding-right:20px;
+}
+div.teammemb figure{
+    border:black 1px solid;
+    margin-bottom:20px;
+    height:78px;
+    width:78px;
+}
+div.teammemb figure:last-of-type{
+    margin:0;
+}

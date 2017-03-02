@@ -1,0 +1,6 @@
+@charset "utf-8";
+/*purify*/
+body,div,ul,li,p,figure{
+	margin:0;
+	padding:0;
+}
