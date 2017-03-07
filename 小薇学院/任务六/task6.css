@@ -122,7 +122,7 @@ div#main_part1 #how p{
 }
 div#main_part1 #how ul{
     list-style:none;
-    font:12px/1.5 "微软雅黑" oblicqu;
+    font:oblique 12px/1.5 "微软雅黑";
     opacity:0.7;
     color:#231815;
     position:absolute;
@@ -130,6 +130,7 @@ div#main_part1 #how ul{
 }
 div#main_part1 #how li span{
     color:#cd4a48;
+    text-transform:capitalize;
 }
 /****侧边栏****/
 aside#about{
@@ -148,6 +149,7 @@ aside#about h3{
     color:#000000;
     text-decoration:underline;
     font-variant:small-caps;
+    text-transform:capitalize;
 }
 aside#about p.about{
     font:12px/10px "楷体";
@@ -228,7 +230,7 @@ div#main_part2 #left p:not(.first){
 div#main_part2 #left p.appendtofirst{
     text-indent:0;
 }
-div#main_part2 #left figure{/*图片浮动*/
+div#main_part2 #left img{/*图片浮动*/
     float:right;
     margin: 18px 9px 8px 15px;
 }
