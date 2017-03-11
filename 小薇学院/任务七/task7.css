@@ -60,14 +60,17 @@ header ul li a{
     width:65px;/*增大a的面积，更好选中*/
     height:56px;
     box-sizing:border-box;
+	color: #787b83;
 }
-header ul li.login{
+header ul .login {
     background:url(logo/logo_2.png) no-repeat 18px 15px;
 }
-body#home_page li.home_page a{
+header ul .login a {
+	color:#e74f4d;
+}
+#home_page .home_page a {
     color:#e74f4d;
     border-bottom:#e74f4d solid 3px;
-    
 }
 
 /*3. footer*/
