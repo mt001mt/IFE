@@ -1,0 +1,620 @@
+@charset "utf-8";
+/*本样式大纲如下
+1. BODY样式
+2. HEADER样式
+3. FOOTER样式
+4. 正文第一部分样式
+5. 正文第二部分样式
+6. 正文第三部分样式
+7. 正文第四部分样式
+8. 正文第五部分样式
+9. 正文第六部分样式
+10. 正文第七部分样式
+11. 正文第八部分样式
+*/
+html{
+    font:16px/1 "微软黑体";
+    background:black;
+}
+/*1. body*/
+body{
+    min-width:1280px;
+    /*width:1280px;*/
+    margin:0 auto;
+    width:auto;
+    background:white;
+}
+
+/*2. header*/
+header{
+    position:relative;
+    text-align:justify;
+}
+header div.logo{
+    display:inline-block;
+    background:url(logo/logo_1.png) left center no-repeat;
+    line-height:59px;
+    padding-left:41px;
+    margin-left:59px;
+}
+header .logo p{
+    font:21px/56px "黑体";
+    color:#393a3a;
+}
+header ul{
+    display:inline-block;
+    position:absolute;
+    right:30px;
+}
+header ul li{
+    display:inline-block;
+    color:#787b83;
+    font-size:14px;
+    line-height:45px;
+    width:100px;
+    text-align:center;
+}
+header ul li a{
+    display:inline-block;
+    text-decoration:none;
+    width:65px;/*增大a的面积，更好选中*/
+    height:56px;
+    box-sizing:border-box;
+}
+header ul li.login{
+    background:url(logo/logo_2.png) no-repeat 18px 15px;
+}
+body#home_page li.home_page a{
+    color:#e74f4d;
+    border-bottom:#e74f4d solid 3px;
+    
+}
+
+/*3. footer*/
+footer {
+	padding: 31px 100px 17px 100px;
+	position: relative;
+	font: 12px 'SimSun';
+	color: #FFFFFF;
+	background: #2f2f38;
+}
+footer a {
+	position: absolute;
+	top:31px;
+	right: 41px;
+	color: #fff;
+}
+
+/*4. 第一部分*/
+#container1 div.c1_d1{
+    background:url(pic/pic_1.png) no-repeat;
+    height:691px;
+    width:1280px;
+    margin:0 auto;
+}
+#container1 h1{
+    padding-left:117px;
+    font-size:61px;
+    line-height:112px;
+    color:#fff;
+    padding-top:205px;
+}
+#container1 .c1_d1:after{
+    content:"";
+    background:rgba(205,204,204,0.2);
+    display:block;
+    width:1280px;
+    height:691px;
+    margin-top:-502px;
+}
+
+#container1 .c1_d1 p{
+    color:#fff;
+    padding-left:124px;
+    font-size:21px;
+    line-height:30px;
+}
+#container1 button{
+    font-size:30px;
+    line-height:65px;
+    background:#e74f4d;
+    width:331px;
+    margin:60px 0 0 126px;
+    border:none;
+}
+#container1 .table{
+    display:table;
+    width:100%;
+}
+#container1 .row1{
+    width:100%;
+    display:table-row;
+    vertical-align:middle;
+    height:130px;
+}
+#container1 .row1>.tc{
+    padding-top:43px;
+}
+#container1 .tc{
+    display:table-cell;
+    width:25%;
+    text-align:center;
+    vertical-align:top;
+}
+#container1 .row2{
+    width:100%;
+    display:table-row;
+    height:52px;
+    margin-bottom:30px;
+}
+#container1 .tc_text{
+    box-sizing:border-box;
+    border-right:1px #aaaaaa solid;
+    border-left:1px #aaaaaa solid;
+}
+#container1 .tc_text:first-of-type{
+    border-left:none;
+}
+#container1 .tc_text:last-of-type{
+    border-right:none;
+}
+#container1 .tc_text p{
+    width:160px;
+    display:inline-block;
+    font:14px/18px "黑体";
+    color:#767777;
+}
+
+/*5. 第二部分*/
+#container2{
+    background:#ededed url(pic/pic_2.png) center 89px no-repeat;
+    width: auto;
+    height:361px;
+}
+#container2 p{
+    color: rgba( 50, 51, 51, 0.5 );
+    font: 53.586px/1 'SimHei';
+    text-align: center;
+    padding-top:229px;
+}
+
+/*6. 第三部分*/
+#container3{
+    background-image: url(pic/pic_3.png);
+    width: 1280px;
+    height: 341px;
+    margin:0 auto;
+    text-align: center;
+}
+#container3:after{
+    content:"";
+    background:rgba(224,199,199,0.2);
+    display:block;
+    width:1280px;
+    height:341px;
+    margin-top:-206px;
+}
+#container3 h2 {
+    color: #FFFFFF;
+    font-weight: 600;
+    font-size: 21px;
+    padding-top: 53px;
+}
+#container3 hr {
+    width: 31px;
+    margin:10px auto 19px;
+    border:none;
+    border-top: #fff solid 3px;
+}
+#container3 p {
+    color: rgba( 255, 255, 255, 0.8);
+    font-size: 12px;
+    margin-bottom: 53px;
+}
+#container3 .form_div{
+    display: inline-block;
+    margin: 0;
+}
+#container3 input[type="text"] {
+    font-size:12px;
+    color: #A8AAAA;
+    box-sizing:border-box;
+    width:236px;
+    height:36px;
+    padding-left:12px;
+    vertical-align: top;/*让input和form上边缘对齐*/
+}
+#container3 .sel {/*下拉箭头按钮*/
+    background: url(logo/logo_7.png) left center no-repeat;
+    width: 19px;
+    height: 18px;
+    vertical-align: top;
+    margin-left: -100px;
+    border: none;
+    margin: 9px 37px 9px -28px;
+}
+#container3 option {
+    line-height: 27px;
+    color: rgba(32,33,33,0.7);
+    font-size: 12px;
+    padding-left: 32px;
+    text-align: left;
+}
+#container3 input[type="submit"]{
+    background: #be4e48;
+    color: #fff;
+    border:none;
+    width:236px;
+    height:36px;
+    vertical-align: top;/*让input和form上边缘对齐*/
+}
+#container3 datalist {
+    position:absolute;
+    background:#e3e3e3;
+    box-sizing:border-box;
+    border:#bb6c63 solid 1px;
+    border-top:none;
+    width: 236px;
+}
+#container3 option:hover,
+#container3 option:focus {
+    background: #be4e48;
+    color: #fff;
+}
+#container3 option[selected] {
+    background-image: url(logo/logo_8_reverse.png);
+    background-position: 9px center;
+    background-repeat: no-repeat;
+}
+#container3 option[selected]:hover {
+    background-image: url(logo/logo_8.png);
+}
+#container3 datalist[for="province"] {
+    display:block;
+}
+
+/*7. 第四部分*/
+#container4 {
+    background:#f7f7f7;
+	text-align: center;
+	padding-top: 100px;
+}
+#container4 figure{
+    display:inline-block;
+	margin: 0 18px;
+	vertical-align: top;
+	padding-bottom: 114px;
+}
+#container4 .fig{
+    background:#fff;
+    box-sizing:border-box;
+	height: 338px;
+    width:220px;
+    border:rgba(92,92,92,0.1) solid 1px;
+	padding-top: 13px;
+}
+#container4 .figc_1{
+    font-size:14px;
+    color:#000;
+	margin: 14px 0 10px;
+}
+#container4 .figc_2{
+    font-size:12px;
+    color:#818181;
+}
+#container4 .figc_3 {
+	font-size: 21px;
+	text-align-last: justify;/*第一行，也是最后一行。按最后一行处理*/
+	margin: 3px 10px 7px;
+}
+#container4 .figc_4{
+    font-size:12px;
+    color:#818181;
+	margin-bottom: 7px;
+}
+
+/*8. 第五部分*/
+#container5 {
+	text-align: center;
+}
+#container5 .c5_d1{
+	display: inline-block;
+	background: url(pic/pic_8.png);
+	height: 567px;
+	width: 851px;
+	text-align: center;
+	color: #fff;
+	position: relative;
+}
+#container5 .c5_d1 .c5_p1{
+	margin: 131px 0 11px;
+	font-size: 49.47px;
+}
+#container5 .c5_d1 .c5_p2{
+	margin-bottom: 39px;
+	font-size: 157.79px;
+}
+#container5 .c5_d1 .c5_p3{
+	margin-bottom: 23px;
+	font-size: 21.91px;
+	text-align: left;
+	padding-left: 350px;
+}
+#container5 .c5_tri{
+	border-right: #fff solid 25px;
+	border-top: transparent solid 15.5px;
+	border-bottom: transparent solid 15.5px;
+	position: absolute;
+	right: 0;
+	top: 50%;
+}
+#container5 .c5_d2{
+	display: inline-block;
+	box-sizing: border-box;
+	height: 567px;
+	width: 429px;
+	text-align: center;
+	padding: 0 71px;
+	vertical-align: top;
+}
+#container5 .c5_t{/*设置滚动窗口的通用格式*/
+	margin: 165px auto 50px;
+	display: none;
+}
+#container5 .c5_t1 {/*设置1号滚动窗口的格式*/
+	display: block;
+}
+#container5 .c5_t1 h5 {
+	color: #000;
+	font-size: 20px;
+	margin-bottom: 31px;
+}
+#container5 .c5_t1 h5 span:first-of-type {
+	transform: skewX(-30deg);
+	color: #7f8080;
+	display: inline-block;
+	margin: 0 5px 0 8px;
+}
+#container5 .c5_t1 h5 span:last-of-type{
+	color: #e74f4d;
+	font-size: 20px;
+}
+#container5 .c5_t1 p{
+	color: #AAAAAA;
+	font: 12px/2.5 'SimSun';
+	text-align: left;
+}
+#container5 .c5_moreinfo {
+	box-sizing: border-box;
+	height: 35px;
+	width: 107px;
+	font-size: 12px;
+	color: #e5676a;
+	border: #e5676a solid 2px;
+	background: #fff;
+	margin-bottom: 24px;
+}
+#container5 .nav li{
+	display: inline-block;
+}
+#container5 .nav li a{
+	display: block;
+	padding-top: 10px;
+	margin: 0 7px;
+	width: 10px;
+	height: 0px;
+	border: #929292 solid 1px;
+	border-radius: 50%;
+	overflow: hidden;
+}
+#container5 .nav .selected a{
+	background: #929292;
+}
+
+/*9. 第六部分*/
+#container6 {
+	text-align: center;
+}
+#container6 .c6_d1,
+#container6 .c6_d2 {
+	display: inline-block;
+	height: 521px;
+	width: 425px;
+	vertical-align: top;
+	font: 21px 'SimHei';
+	padding-top: 173px;
+	box-sizing: border-box;
+}
+#container6 .c6_p {
+	margin-bottom: 9px;
+}
+#container6 .c6_d1 hr,
+#container6 .c6_d2 hr {
+	margin: 24px auto 25px;
+	border: 1px;
+	box-sizing: border-box;
+	width: 31px;
+}
+#container6 .c6_moreinfo {
+	box-sizing: border-box;
+	width: 170px;
+	height: 44px;
+	border-width: 1px;
+	border-style: solid;
+}
+#container6 .c6_d1 {
+	background: #e7504d;
+	color: #fff;
+}
+#container6 .c6_d1 .c6_moreinfo {
+	background: #e7504d;
+	border-color: #fff;
+}
+#container6 .c6_d2 .c6_moreinfo {
+	background: #fff;
+	border-color: #e7504d;
+}
+#container6 .c6_d3 {
+	display: inline-block;
+	background: url(pic/pic_9.png);
+	height: 521px;
+	width: 430px;
+	position: relative;
+}
+#container6 .c6_tri {
+	border-left: #fff solid 25px;
+	border-top: transparent solid 15.5px;
+	border-bottom: transparent solid 15.5px;
+	position: absolute;
+	left: 0;
+	top: 50%;
+}
+
+/*10. 第七部分*/
+#container7 {
+	text-align: center;
+	height: 749px;
+}
+#container7 h2 {
+	padding-top: 118px;
+	color: #323333;
+	font: 21px 'SimHei';
+}
+#container7 hr {
+	box-sizing: border-box;
+	border: #fadedd 1px solid;
+	width: 31px;
+	margin: 12px auto;
+}
+#container7 p {
+	color: #AAAAAA;
+	font: 12px/18px 'Microsoft YaHei';
+}
+#container7 .c7_d1 {
+	display: inline-block;
+	box-sizing: border-box;
+	width: 502px;
+	padding: 104px 76px 0 132px;
+	text-align: left;
+	vertical-align: top;
+}
+#container7 .c7_d1 h4 {
+	color: rgba( 35, 24, 21, 0.8 );
+	font: 14px 'SimHei';
+	margin-bottom: 22px;
+}
+#container7 .c7_d1 p {
+	text-align: left; 
+	color: rgba( 35, 24, 21, 0.6 );
+	font: 12px/1.75 'SimSun';
+}
+#container7 .c7_more {
+	width: 41px;
+	display: block;
+	margin: 7px 0 20px auto;
+	text-align: right;
+	background: url(logo/logo_9.png) left 70% no-repeat;
+	color: rgba( 35, 24, 21, 0.6 );
+	font: 12px 'SimSun';
+}
+#container7 form {
+	display: inline-block;
+	width: 778px;
+	vertical-align: top;
+	text-align: left;
+	padding-top: 104px;
+}
+#container7 label {
+	display: inline-block;
+	box-sizing: border-box;
+	margin: 0 17px 13px 0;
+	padding-left: 17px;
+	background: #ededee;
+	color: rgba( 35, 24, 21, 0.8 );
+	font: 12px/41px 'SimSun';
+	width: 311px;
+	height: 41px;
+}
+#container7 input[type="text"] {
+	background: transparent;
+	border: none;
+	padding: 0;
+}
+#container7 textarea {
+	box-sizing: border-box;
+	resize: none;
+	background: #ededee;
+	border: none;
+	height: 121px;
+	width: 639px;
+	margin-bottom: 13px;
+	padding: 10px 17px;
+}
+#container7 input[type="submit"] {
+	background: #ededee;
+	border: none;
+	height: 41px;
+	width: 639px;
+}
+
+/*11. 第八部分*/
+#contact {
+	text-align: center;
+	background: #32363e;
+}
+#contact h4 {
+	color: #FFFFFF;
+	font: 21px 'SimHei';
+	padding: 92px 0 8px;
+}
+#contact p {
+	color: #FFFFFF;
+	font: 12px/18px 'SimHei';
+}
+#contact form {
+	margin: 27px 0 37px;	
+}
+#contact input[type="email"] {
+	font-size: 14px;
+	width: 431px;
+	height: 41px;
+	box-sizing: border-box;
+	border: #989a93 solid 1px;
+	vertical-align: top;
+}
+#contact input[type="submit"] {
+	font-size: 15px;
+	width: 81px;
+	height: 41px;
+	box-sizing: border-box;
+	background: #6f7178;
+	border: none;
+}
+#contact li {
+	display: inline-block;
+	margin: 0 14px 75px;
+}
+#contact .QQ {
+	background: url(logo/logo_10.png) center center no-repeat;
+	display: block;
+	width: 29px;
+	height: 25px;
+}
+#contact .Sina {
+	background: url(logo/logo_11.png) center center no-repeat;
+	display: block;
+	width: 29px;
+	height: 25px;
+}
+#contact .Bird {
+	background: url(logo/logo_12.png) center center no-repeat;
+	display: block;
+	width: 29px;
+	height: 25px;
+}
+#contact .Globe {
+	background: url(logo/logo_13.png) center center no-repeat;
+	display: block;
+	width: 29px;
+	height: 25px;
+}
