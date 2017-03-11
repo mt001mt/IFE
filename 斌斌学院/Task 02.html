@@ -1,0 +1,232 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>IFE JavaScript Task 02</title>
+<style>
+	body{
+		min-width: 1000px;
+	}
+	form {
+		text-align: right;
+		font-size: 30px;
+		font-family: simhei;
+		width: 800px;
+	}
+	p{
+		padding: 0;
+		margin: 10px 0 20px 430px;
+		color: #ABABAB;
+		font-size: 20px;
+		text-align: left;
+	}
+	input{
+		font-size: 30px;
+		border-radius: 5px;
+	}
+	input[type="submit"] {
+		background: #2F79BA;
+	}
+</style>
+</head>
+
+<body>
+<form>
+<label>名称 <input type="text" name="name"/></label>
+<p class="name"></p>
+<label>密码 <input type="password" name="password"/></label>
+<p class="password"></p>
+<label>密码确认 <input type="password" name="re_password"/></label>
+<p class="re_password"></p>
+<label>邮箱 <input type="email" name="email"/></label>
+<p class="email"></p>
+<label>手机 <input type="tel" name="tel"/></label>
+<p class="tel"></p>
+<input type="submit" value="提交"/>
+</form>
+</body>
+</html>
+<script>
+(function(){
+	document.addEventListener("DOMContentLoaded", function(){
+		var input1 = document.querySelector("input[name='name']");
+		var input2 = document.querySelector("input[name='password']");
+		var input3 = document.querySelector("input[name='re_password']");
+		var input4 = document.querySelector("input[name='email']");
+		var input5 = document.querySelector("input[name='tel']");
+		var btn = document.querySelector("input[type='submit']");
+		console.log(btn);
+		//获得焦点时的事件
+		document.addEventListener("focus", function(e){
+			switch(e.target){//选择获得焦点的元素
+				case input1://名称
+					var p = document.querySelector(".name");
+					p.innerHTML = "必填，长度为4~16个字符";
+					p.style.color = "#ABABAB";
+					break;
+				case input2://密码
+					var p = document.querySelector(".password");
+					p.innerHTML = "必填，长度为8~20个字符";
+					p.style.color = "#ABABAB";
+					break;
+				case input3://密码确认
+					var p = document.querySelector(".re_password");
+					p.innerHTML = "请再次输入相同的密码";
+					p.style.color = "#ABABAB";
+					break;
+				case input4://邮箱
+					var p = document.querySelector(".email");
+					p.innerHTML = "请输入正确的邮箱地址";
+					p.style.color = "#ABABAB";
+					break;
+				case input5://手机
+					var p = document.querySelector(".tel");
+					p.innerHTML = "请输入11位的手机号";
+					p.style.color = "#ABABAB";
+					break;
+			}
+		}, true);//focus不冒泡，为了实现事件代理，捕获阶段触发事件，不兼容IE
+		//获得失焦时的事件
+		document.addEventListener("blur", function(e){
+			switch(e.target){//选择获得焦点的元素
+					case input1://名称
+					var p = document.querySelector(".name");
+					var len = input1.value.length;
+					if(len>=4 && len<=16){//名称符合要求
+						p.innerHTML= "名称可用";
+						input1.style.borderColor = "#5EBB46";//名称符合显示绿色
+						p.style.color = "#5EBB46";
+						break;
+					}
+					else if(len==0){//名称没填
+						p.innerHTML = "名称不能为空";
+					}
+					else if(len<4){//名称少于4个
+						p.innerHTML = "名称字符不能少于4个";
+					}
+					else {//名称多于16个
+						p.innerHTML = "名称字符不能多于16个";
+					}
+					input1.style.borderColor = "#DD010D";//名称不符合显示红色
+					p.style.color = "#DD010D";
+					break;
+				case input2://密码
+					var p = document.querySelector(".password");
+					var len = input2.value.length;
+					if(len>=8 && len<=20){//密码符合要求
+						p.innerHTML= "密码可用";
+						input2.style.borderColor = "#5EBB46";//密码符合显示绿色
+						p.style.color = "#5EBB46";
+						break;
+					}
+					else if(len==0){//名称没填
+						p.innerHTML = "密码不能为空";
+					}
+					else if(len<8){//名称少于8个
+						p.innerHTML = "密码字符不能少于8个";
+					}
+					else {//名称多于20个
+						p.innerHTML = "密码字符不能多于20个";
+					}
+					input2.style.borderColor = "#DD010D";//密码不符合显示红色
+					p.style.color = "#DD010D";
+					break;
+				case input3://密码确认
+					var p = document.querySelector(".re_password");
+					if(input2.value == input3.value){//密码相同
+						p.innerHTML = "密码输入一致";
+						input3.style.borderColor = "#5EBB46";//密码相同显示绿色
+						p.style.color = "#5EBB46";
+						break;
+					}
+					p.innerHTML = "两次输入的密码不相同";//密码不相同
+					input3.style.borderColor = "#DD010D";//密码不相同显示红色
+					p.style.color = "#DD010D";
+					break;
+				case input4://邮箱
+					var p = document.querySelector(".email");
+					if(input4.value.match(/.+@.+/)){//存在@，认为邮箱格式正确
+						p.innerHTML = "邮箱格式正确";
+						input4.style.borderColor = "#5EBB46";//邮箱格式正确显示绿色
+						p.style.color = "#5EBB46";
+						break;
+					}
+					p.innerHTML = "邮箱格式错误";//邮箱格式错误
+					input4.style.borderColor = "#DD010D";//邮箱格式错误显示红色
+					p.style.color = "#DD010D";
+					break;
+				case input5://手机
+					var p = document.querySelector(".tel");
+					if(input5.value.match(/^1[0-9]{10}$/)){//手机格式正确
+						p.innerHTML = "手机格式正确";
+						input5.style.borderColor = "#5EBB46";//手机格式正确显示绿色
+						p.style.color = "#5EBB46";
+						break;
+					}
+					p.innerHTML = "手机格式错误";	//手机格式错误
+					input4.style.borderColor = "#DD010D";//手机格式错误显示红色
+					p.style.color = "#DD010D";
+					break;
+			}
+		}, true);//focus不冒泡，为了实现事件代理，捕获阶段触发事件，不兼容IE
+		//点击提交按钮事件
+		document.addEventListener("click", function(e){
+			if(e.target == btn){//点击了提交按钮
+				var check = true;
+				var len = input1.value.length;
+				var p = document.querySelector(".name")//检查名称
+				if(len == 0){
+					p.innerHTML = "名称不能为空";
+					input1.style.borderColor = "#DD010D";
+					p.style.color = "#DD010D";
+					check = false;
+				}
+				else if(len<4 || len>16){//显示红色等在blur事件中已经执行了
+					check = false;
+				}
+				len = input2.value.length;
+				p = document.querySelector(".password")//检查密码
+				if(len == 0){
+					p.innerHTML = "密码不能为空";
+					input2.style.borderColor = "#DD010D";
+					p.style.color = "#DD010D";
+					check = false;
+				}
+				else if(len <8 || len>21){//显示红色等在blur事件中已经执行了
+					check = false;
+				}
+				len = input3.value.length;
+				p = document.querySelector(".re_password")//检查重复的密码
+				if(len == 0 || input2.value != input3.value){
+					p.innerHTML = "两次输入的密码不相同";
+					input3.style.borderColor = "#DD010D";
+					p.style.color = "#DD010D";
+					check = false;
+				}
+				len = input4.value.length;
+				p = document.querySelector(".email")//检查邮箱
+				if(len == 0 || !(input5.value.match(/^1[0-9]{10}$/))){
+					p.innerHTML = "邮箱格式错误";
+					input4.style.borderColor = "#DD010D";
+					p.style.color = "#DD010D";
+					check = false;
+				}
+				len = input5.value.length;
+				p = document.querySelector(".tel")//检查手机
+				if(len == 0|| !(input4.value.match(/.+@.+/))){
+					p.innerHTML = "手机格式错误";
+					input5.style.borderColor = "#DD010D";
+					p.style.color = "#DD010D";
+					check = false;
+				}
+				if(!check){
+					e.preventDefault();
+					alert("输入有误");
+				}
+			}
+		}, false);
+	}
+	,false);
+})();
+
+</script>
