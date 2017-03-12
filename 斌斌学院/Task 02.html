@@ -170,8 +170,8 @@
 			}
 		}, true);//focus不冒泡，为了实现事件代理，捕获阶段触发事件，不兼容IE
 		//点击提交按钮事件
-		document.addEventListener("click", function(e){
-			if(e.target == btn){//点击了提交按钮
+		document.addEventListener("submit", function(e){
+			if(e.target == document.querySelector("form")){//提交了表单
 				var check = true;
 				var len = input1.value.length;
 				var p = document.querySelector(".name")//检查名称
