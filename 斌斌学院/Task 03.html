@@ -45,7 +45,7 @@ function getData() {
 	var len = li_list.length;
 	for(var i = 0; i<len; i++){
 		var data_temp = new Array();
-		data_temp[0] = li_list[i].childNodes[0].nodeValue.substr(0, 2);//获取城市名
+		data_temp[0] = li_list[i].innerHTML.substr(0, 2);//获取城市名
 		data_temp[1] = li_list[i].childNodes[1].innerHTML;//获取空气质量
 		data[i] = data_temp;
 	}
