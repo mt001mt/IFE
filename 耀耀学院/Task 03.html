@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>IFE JavaScript Task 03</title>
+<style>
+form{
+	text-align: center;
+	margin-top: 100px;
+	font-size: 20px;
+}
+label{
+	line-height: 40px;
+}
+select{
+	vertical-align: baseline;
+	font-size: 20px;
+	align-items: flex-end;
+}
+input{
+	font-size: 20px;
+}
+.no_student{
+	display: none;
+}
+</style>
+</head>
+
+<body>
+<form>
+	<label><input type="radio" name="student" value="student" id="student" checked />在校生</label>
+	<label><input type="radio" name="student" value="no_student" id="no_student" />非在校生</label>
+	<div class="student">
+		<label>学校</label>
+		<select name="city">
+			<option value="1" checked>北京</option>
+			<option value="2">上海</option>
+		</select>
+		<select>
+			<option value="1.1"  checked>北京大学</option>
+			<option value="1.2">清华大学</option>
+		</select>
+	</div>
+	<div class="no_student">
+		<label>工作单位 <input type="text" name="company" /></label>
+	</div>
+</form>
+</body>
+</html>
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+			document.addEventListen("change", function(){//单选框或下拉菜单发生变化时
+				var stu = document.querySelector("#student");
+				var n_stu = document.querySelector("#no_student");
+				var 
+			}, false);
+		}, false);
+</script>
