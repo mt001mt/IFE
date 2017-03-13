@@ -3,12 +3,69 @@
 <head>
 <meta charset="utf-8">
 <title>Task8 By MT</title>
-<link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 <style>
+body{
+	padding: 0;
+	margin: 0;
+}
+.container-fluid{
+	overflow: auto;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.row{
+	float: left;
+	width: 100%;
+}
 .row-all{
 	padding-left: 20px;
 	padding-right: 20px;
 }
+[class*="col-"]{
+	float: left;
+	padding-left: 10px;
+	padding-right: 10px;
+	box-sizing: border-box;
+}
+/*先写xs屏的规则，不用媒体查询，被后写的其他屏覆盖。
+ *仅写了用到的规则
+*/
+.col-xs-2{
+	width: 16.6%;
+}
+.col-xs-3{
+	width: 25%;
+}
+.col-xs-6{
+	width: 50%;
+}
+.col-xs-8{
+	width: 66.6%;
+}
+.col-xs-12{
+	width: 100%;
+}
+/*sm屏规则
+ *仅写了用到的规则
+*/
+@media(min-width:768px){
+	.col-sm-1{
+		width: 8.3%;
+	}
+	.col-sm-2{
+		width: 16.6%;
+	}
+	.col-sm-3{
+		width: 25%;
+	}
+	.col-sm-4{
+		width: 33.3%;
+	}
+	.col-sm-6{
+		width: 50%;
+	}
+}
+/*其他规则*/
 .div-all{
 	background: #eee;
 	height: 50px;
@@ -21,17 +78,17 @@
 
 <body>
 <div class="container-fluid">
-	<div class="row row-all">
+	<div class="row">
 		<div class="col-xs-6 col-sm-4"><div class="div-all"></div></div>
 		<div class="col-xs-6 col-sm-4"><div class="div-all"></div></div>
 		<div class="col-xs-12 col-sm-4"><div class="div-all"></div></div>
 	</div>
-	<div class="row row-all">
+	<div class="row">
 		<div class="col-xs-3 col-sm-3"><div class="div-all"></div></div>
 		<div class="col-xs-6 col-sm-6"><div class="div-all"></div></div>
 		<div class="col-xs-3 col-sm-3"><div class="div-all"></div></div>
 	</div>
-	<div class="row row-all">
+	<div class="row">
 		<div class="col-xs-2 col-sm-1"><div class="div-all"></div></div>
 		<div class="col-xs-2 col-sm-1"><div class="div-all"></div></div>
 		<div class="col-xs-8 col-sm-2"><div class="div-all"></div></div>
