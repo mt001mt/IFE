@@ -186,6 +186,9 @@ document.addEventListener("DOMContentLoaded", function(){
           }
           setTimeout(loop, 500);
         }
+        else{
+          spanList[display.preInnLoo + 1].style.backgroundColor = "red";
+        }
       }
     }
     /*
@@ -219,6 +222,17 @@ document.addEventListener("DOMContentLoaded", function(){
     *@return none
     */
     function display(spanList, innerLoop, key){
+      if(display.preInnLoo !== undefined){
+        if(display.preInnLoo != innerLoop){
+          spanList[display.preInnLoo + 1].style.backgroundColor = "red";
+          spanList[innerLoop + 1].style.backgroundColor = "darkorange";
+          display.preInnLoo = innerLoop;
+        }
+      }
+      else{
+        spanList[innerLoop + 1].style.backgroundColor = "darkorange";
+        display.preInnLoo = innerLoop;
+      }
       spanList[innerLoop + 1].style.height = key + "px";
     }
   }, false);
