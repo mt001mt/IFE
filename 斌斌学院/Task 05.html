@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>IFE JavaScript Task 03</title>
+<style>
+.container {
+  padding-top: 50px;
+  width: 50%;
+  min-width: 550px;
+  margin-left: 25%;
+  overflow: hidden;
+}
+#left-out {
+  margin-left: 30px;
+}
+#sort {
+  margin-left: 30px;
+}
+span {
+  display: inline-block;
+  width: 15px;
+  font-size: 16px;
+  background-color: red;
+  color: white;
+  margin-top: 10px;
+  margin-left: 10px;
+  cursor: default;
+}
+</style>
+</head>
+
+<body>
+<form class="container">
+  <input type="number" id="num" required />
+  <button type="submit" id="left-in">左侧入</button>
+  <button type="submit" id="right-in">右侧入</button>
+  <button type="button" id="left-out">左侧出</button>
+  <button type="button" id="right-out">右侧出</button>
+  <button type="button" id="sort">排序</button>
+  <div></div>
+</form>
+</body>
+</html>
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+  var count = 0;
+  /*
+  *添加click事件，根据事件确定事件
+  */
+  document.addEventListener("click", function(e){
+    var btn1 = document.getElementById("left-in");
+    var btn2 = document.getElementById("right-in");
+    var btn3 = document.getElementById("left-out");
+    var btn4 = document.getElementById("right-out");
+    var div = document.querySelector("div");
+    var btn5 = document.getElementById("sort");
+    var target = e.target;
+    switch(true){
+      case (!!(btn1 === target))://点击了“左侧入”
+        e.preventDefault();
+        var num = getNum();
+        if(num !== false){
+          insertNum(num, true);
+        }
+        break;
+      case (!!(btn2 === target))://点击了“右侧入”
+        e.preventDefault();
+        var num = getNum();
+        if(num !== false){
+          insertNum(num, false);
+        }
+        break;
+      case (!!(btn3 === target))://点击了“左侧出”
+        pullNum(true);
+        break;
+      case (!!(btn4 === target))://点击了“右侧出”
+        pullNum(false);
+        break;
+      case (target.nodeName.toLowerCase() == "span")://点击了<span>元素
+        div.removeChild(target);
+        break;
+      case (!!(btn5 === target))://点击了“排序”
+        var object = getArray();
+        if(object){
+          var array = object.array,//得到排序的数组
+              spanList = object.spanList;//得到数组在dom中的span对象
+          sort(array, spanList);
+        }
+    }
+    /*
+    *得到input的数值并返回
+    *@param none
+    *@return 如果显示超过了60个，提示错误，并返回false
+    *        如果input中不是数值，提示错误，并返回false
+    *                    是数值，返回该数值的字符串形式
+    */
+    function getNum(){
+      if(count > 60){
+        alert("队列中数值超过60，请删除后再增加");
+        return false;
+      }
+      count++;
+      var num = document.getElementById("num").value;
+      if(num === "" || num.match(/\D/)) {//没有输入数据或者输入数据有误
+        alert("请输入数值");
+        return false;
+      }
+      if(num < 10 || num >100){
+        alert("请输入10~100的数值");
+        return false;
+      }
+      return num;
+    }
+    /*
+    *将输入的数据num显示
+    *@param num 需要显示的数据，String，由getNum()得到
+    *@param dir 方向，Boolean，true从左边插入 false从右边插入
+    *@return none
+    */
+    function insertNum(num, dir){
+      var span = document.createElement("span");
+      span.style.height = num + "px";
+      if(dir) {
+        div.insertBefore(span, div.firstElementChild);
+      }
+      else {
+        div.appendChild(span);
+      }
+      span.style.height = Number(num);
+    }
+    /*
+    *将显示的数据num删除一个，并在弹窗中显示这个值
+    *如果没有数据可以删除，弹窗提示无数据可删除
+    *@param dir 方向，Boolean，true删除左边第一个 false删除右边第一个
+    *@return none
+    */
+    function pullNum(dir){
+      var span;
+      if(div.childElementCount == 0){//没有子元素存在，无数据可删
+        alert("无数据可以删除，请重试");
+      }
+      else {
+        count--;
+        if(dir) {
+          span = div.removeChild(div.firstElementChild);
+        }
+        else {
+          span = div.removeChild(div.lastElementChild);
+        }
+        var numDisp = span.style.height.slice(0, -2);
+        setTimeout(function(){//先让浏览器显示数据被删除，再弹窗
+          alert("删除的数值为" + numDisp);
+        }, 10);
+      }
+      span = null;
+    }
+     /*
+    *插入排序，用递归实现，并在实现的过程中显示
+    *@param array Array 需要排序的数组
+    *@param spanList Array DOM中的span组成的数组
+    *@return none
+    */
+    function sort(array, spanList){
+      var len = array.length;
+      if(len == 1){
+        return;
+      }
+      var outLoop = 1,
+          innerLoop = 0,
+          key = array[1];
+      loop();
+      
+      function loop(){
+        if(outLoop < len){
+          if(array[innerLoop] > key && innerLoop > -1){
+            array[innerLoop + 1] = array[innerLoop];
+            display(spanList, innerLoop, array[innerLoop]);
+            innerLoop--;
+          }
+          else{//内循环已经结束了
+            array[innerLoop + 1] = key;
+            display(spanList, innerLoop, key);
+            innerLoop = outLoop;
+            key = array[++outLoop];
+          }
+          setTimeout(loop, 500);
+        }
+      }
+    }
+    /*
+    *从div中取得需要排序的数组
+    *@param none
+    *@return 如果数组的长度大于2，返回 Object{ array : Array[Numner], spanList : Array[DOMspan]
+    *        如果数组的长度小于2，无需排序，返回false
+    */
+    function getArray(){
+      var div =document.querySelector("div");
+      var len = div.childElementCount;
+      if(len < 2){
+        alert("没有数据需要排序");
+        return false;
+      }
+      var array = [];
+      var spanList = Array.prototype.slice.call(div.children, 0);
+      for(var i = 0; i < len; i++){
+        array.push(Number(spanList[i].style.height.slice(0, -2)));
+      }
+      return {
+        array : array,
+        spanList : spanList
+      };
+    }
+    /*
+    *根据sort进程，对显示的数值进行排列
+    *@param spanList Array DOM中的span组成的数组
+    *@param innerLoop Number 数组中需要被替换的index
+    *@param key Number 数组中需要被替换的值
+    *@return none
+    */
+    function display(spanList, innerLoop, key){
+      spanList[innerLoop + 1].style.height = key + "px";
+    }
+  }, false);
+}, false);
+</script>
