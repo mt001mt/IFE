@@ -6,6 +6,9 @@
 4. 主体部分
    (1) 导航栏
    (2) 文档显示
+          查询
+          价格
+          统计
 $. 通用部分
 */
 /*1. body*/
@@ -192,10 +195,6 @@ aside {
 #search>div:first-of-type {
   margin-bottom: 2px;
 }
-#change {
-  position: absolute;
-  background: ;
-}
 #search .in-b {
   display: inline-block;
 }
@@ -277,6 +276,7 @@ aside {
   position: absolute;
   top: 28px;
   right: 112px;
+  cursor: pointer;
 }
 /***价格部分***/
 #price {
@@ -297,6 +297,7 @@ aside {
   vertical-align: top;
   width: 111px;
   background-color: #fff;
+  cursor: pointer;
 }
 #price .time {
   padding-left: 29px;
@@ -323,9 +324,6 @@ aside {
   padding-left: 61px;
   margin-right: 0;
 }
-
-
-
 #price .selected:before {
   content: "";
   display: block;
@@ -347,7 +345,73 @@ aside {
   width: 31px;
   font-size: 20px;
 }
-
+/***统计部分***/
+#statistic {
+  margin-top: 22px;
+}
+#statistic h3 {
+  font-family: "Microsoft YaHei";
+  font-size: 12px;
+  color: #323333;
+  margin-bottom: 6px;
+}
+#statistic li {
+  display: inline-block;
+  height: 71px;
+  width: 200.75px;
+  background-color: #fff;
+  position: relative;
+  padding-left: 11px;
+  border: #d2d4d7 1px solid;
+  margin-right: 29px;
+}
+#statistic li:last-of-type {
+  margin-right: 0px;
+}
+#statistic li:before {
+  content: "";
+  width: 4px;
+  height: 71px;
+  position: absolute;
+  top: -1px;
+  left: -1px;
+}
+#statistic li:after {
+  content: "";
+  display: block;
+  width: 61px;
+  height: 47px;
+  position: absolute;
+  right: 15px;
+  top: 12px;
+}
+#statistic p {
+  font-size: 12px;
+  color: #323333;
+  padding-top: 19px;
+  padding-bottom: 14px;
+}
+#statistic label {
+  font-size: 10px;
+  color: #aaaaaa;
+  vertical-align: top;
+}
+#statistic .static-1:before,
+#statistic .static-1:after {
+  background-color: #43b29d;
+}
+#statistic .static-2:before,
+#statistic .static-2:after {
+  background-color: #388bc2;
+}
+#statistic .static-3:before,
+#statistic .static-3:after {
+  background-color: #cf4a36;
+}
+#statistic .static-4:before,
+#statistic .static-4:after {
+  background-color: #e2cd47;
+}
 
 /*$. 通用部分*/
 .select {
