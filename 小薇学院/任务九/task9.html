@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Task9 By MT</title>
+<link href="reset.css" type="text/css" rel="stylesheet"/>
+<link href="task9.css" type="text/css" rel="stylesheet"/>
+<link href="iconfont.css" type="text/css" rel="stylesheet"/>
+</head>
+
+<body>
+<header>
+  <input type="text" />
+  <span>登录</span>
+</header>
+<!--以下是侧边栏-->
+<aside>
+  <div id="user-info">
+    <div id="user-portrait"></div><!--
+    --><span id="user-name">mt001mt</span>
+    <div id="user-data">
+      <div class="follows">
+        <p>110</p>
+        <p>收藏</p>
+      </div><!--
+      --><div class="vr"></div><!--
+      --><div class="fans">
+        <p>120</p>
+        <p>粉丝</p>
+      </div>
+    </div>
+  </div>
+  <div id="user-reports" class="user-data">
+    <h1 class="selected"><i class="iconfont">&#xe60d;</i>个人报表</h1>
+    <h2><i class="iconfont">&#xe694;</i><i class="iconfont">&#xe98f;</i>文件一</h2>
+    <h2 class="selected"><i class="iconfont">&#xe692;</i><i class="iconfont">&#xe98f;</i>文件二</h2>
+    <h3 class="selected"><i class="iconfont">&#xe63b;</i>文档1</h3>
+    <h3><i class="iconfont">&#xe63b;</i>文档2</h3>
+    <h2><i class="iconfont">&#xe694;</i><i class="iconfont">&#xe98f;</i>文件三</h2>
+  </div>
+  <div id="user-favorate" class="user-data">
+    <h1><i class="iconfont">&#xe60c;</i>个人收藏</h1>
+  </div>
+  <div id="user-share" class="user-data">
+    <h1><i class="iconfont">&#xf00d6;</i>我的分享</h1>
+  </div>
+  <div id="user-mapstore" class="user-data">
+    <h1><i class="iconfont">&#xe60c;</i>图库</h1>
+  </div>
+  <div id="user-growth" class="user-data">
+    <h1><i class="iconfont">&#xe60c;</i>成长记录</h1>
+  </div>
+  <div id="user-account" class="user-data">
+    <h1><i class="iconfont">&#xe6eb;</i>账户信息</h1>
+  </div>
+</aside><!--
+<!--以上是侧边栏
+<!--以下是右侧主体
+--><div id="main">
+  <!----以下是主体的导航栏-->
+  <nav class="nav">
+    <span>C站 </span> / <span>个人报表</span> / <span>文件二</span> / <span class="document-id">文档一</span>
+  </nav>
+  <!----以上是主体的导航栏---->
+  <!----以下是主体的文档显示，后期通过Ajax来实现数据交换？---->
+  <div id="doc">
+    <!------以下是文档的查询部分---->
+    <form id="search">
+      <span id="search-change" title="互换买卖方">换</span>
+      <button type="submit">搜索</button>
+      <div>
+        <label>查询项</label><!--
+     --><div class="in-b select" id="search-num">
+          <select class="my-select">
+            <option selected>第一项</option>
+            <option>第二项</option>
+            <option>第三项</option>
+          </select>
+        </div><!--
+     --><label>买方</label><!--
+     --><div class="in-b select" id="search-buyer">
+          <select class="my-select">
+            <option selected>小A</option>
+            <option>小B</option>
+            <option>小C</option>
+          </select>
+        </div><!--
+     --><label>日期</label><!--
+     --><div class="in-b" id="search-data">2016-04-01</div><!--
+     --><label>总耗时</label><!--
+     --><div class="in-b select" id="search-time">
+          <select class="my-select">
+            <option>7天</option>
+            <option selected>8天</option>
+            <option>9天</option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <label class="pl160">卖方</label><!--
+     --><div class="in-b select" id="search-solder">
+          <select class="my-select">
+            <option>小A</option>
+            <option>小B</option>
+            <option selected>小C</option>
+          </select>
+        </div><!--
+     --><label>人数</label><!--
+     --><div class="in-b select" id="search-numofpeaple">
+          <select class="my-select">
+            <option>9人</option>
+            <option selected>10人</option>
+            <option>11人</option>
+          </select>
+        </div><!--
+     --><label>成交项</label><!--
+     --><div class="in-b select" id="search-numofdeal">
+          <select class="my-select">
+            <option>9项</option>
+            <option selected>10项</option>
+            <option>11项</option>
+          </select>
+        </div>
+      </div>
+    </form>
+    <!------以上是文档的查询部分---->
+    <!------以上是文档的价格部分---->
+    <ul id="price">
+      <li class="pre btn iconfont">&#xe693;</li><!--
+   --><li class="list selected">
+        <p class="time">10:00 am</p>
+        <p class="price">￥1200</p>
+      </li><!--
+   --><li class="list">
+        <p class="time">11:00 am</p>
+        <p class="price">￥1300</p>
+      </li><!--
+   --><li class="list">
+        <p class="time">12:00 am</p>
+        <p class="price">￥1200</p>
+      </li><!--
+   --><li class="list">
+        <p class="time">01:00 pm</p>
+        <p class="price">￥1400</p>
+      </li><!--
+   --><li class="list">
+        <p class="time">02:00 pm</p>
+        <p class="price">￥1500</p>
+      </li><!--
+   --><li class="list">
+        <p class="time">03:00 pm</p>
+        <p class="price">￥1800</p>
+      </li><!--
+   --><li class="next btn iconfont">&#xe694;</li><!--
+   --><li class="history">历史查询</li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

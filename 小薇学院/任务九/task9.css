@@ -1,0 +1,378 @@
+@charset "utf-8";
+/*本样式大纲如下
+1. HTML、BODY样式
+2. HEADER样式
+3. 侧边栏样式
+4. 主体部分
+   (1) 导航栏
+   (2) 文档显示
+$. 通用部分
+*/
+/*1. body*/
+body{
+  padding-top: 56px;
+  font-family: simHei;
+  font-size: 16px;
+  line-height: 1;
+  width: 1280px;
+}
+*{
+  box-sizing: border-box;
+}
+
+/*2. header*/
+header{
+  position: fixed;
+  right:0;
+  left: 0;
+  top: 0;
+  line-height: 56px;
+  height: 56px;
+  background: #2189bf url(logo/logo_1.png) 51px 11px no-repeat;
+  text-align: right;
+  padding-right: 93px;
+  z-index: 2;
+}
+header input {
+  background: #fff url(logo/logo_2.png) 18px 5px no-repeat;
+  border: none;
+  border-radius: 14px;
+  line-height: 28px;
+  width: 313px;
+  margin-right: 21px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+header span {
+  color: #FFFFFF;
+  font: 12px 'Adobe Heiti Std';
+}
+header span:before {
+  content: "";
+  display: inline-block;
+  height: 17px;
+  width: 17px;
+  vertical-align: -4px;
+  background: url(logo/logo_3.png) no-repeat;
+}
+/*3. 左侧栏 aside*/
+aside {
+  background-color: #2a2e3d;
+  width: 260px;
+  height: auto;
+  display: inline-block;
+}
+/**个人信息**/
+#user-info {
+  height: 150px;
+  padding-top: 18px;
+  padding-left: 46px;
+}
+#user-portrait {
+  height: 57px;
+  width: 57px;
+  border: #fff solid 1px;
+  border-radius: 50%;
+  background: transparent url(pic/pic_1.jpg) center center/52px 52px no-repeat;
+  background-clip: content-box;
+  display: inline-block;
+  padding: 5px;
+  vertical-align: middle;
+}
+#user-info span {
+  color: #fff;
+  line-height: 57px;
+  vertical-align: middle;
+  padding-left: 19px;
+}
+#user-data {
+  margin-top: 25px;
+  color: #fff;
+  text-align: left;
+}
+#user-data div {
+  display: inline-block;
+  color: #6e8095;
+  vertical-align: middle;
+}
+#user-data p:last-child{
+  font-size: 12px;
+  line-height: 1.5;
+}
+#user-data .follows {
+  padding-left: 18px;
+  padding-right: 30px;
+}
+#user-data .fans {
+  padding-left: 31px;
+}
+#user-data .vr {
+  background: #6e8095;
+  width: 2px;
+  height: 29px;
+}
+/**个人数据**/
+.user-data {
+  color: #6e8095;
+  margin: 9px 0 9px;
+}
+.user-data h1,
+.user-data h2,
+.user-data h3 {
+  line-height: 30px;
+  height: 30px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.user-data h1 {
+  margin-left: 46px;
+}
+.user-data h2 {
+  margin-left: 68px;
+}
+.user-data h3 {
+  margin-left: 101px;
+}
+.user-data h1 .iconfont {
+  font-size: 12px;
+  padding-right: 13px;
+  vertical-align: top;
+  line-height: 29px;
+}
+.user-data h2 .iconfont {
+  font-size: 12px;
+  padding-right: 7px;
+}
+.user-data h2 .iconfont:last-of-type {
+  padding-right: 5px;
+}
+.user-data h3 .iconfont {
+  font-size: 12px;
+  padding-right: 4px;
+}
+.user-data .selected {
+  color: #ededef;
+}
+
+/*4. 主体部分 #main*/
+#main {
+  display: inline-block;
+  vertical-align: top;
+  width: 1020px;
+}
+/**(1)导航栏**/
+#main nav {
+  line-height: 28px;
+  font-size: 12px;
+  height: 31px;
+  color: #aaaaaa;
+  padding-left: 30px;
+}
+#main nav span {
+  white-space: pre;
+  cursor: pointer;
+}
+#main nav .document-id{
+  color: #6898c2;
+}
+/**(2)文档显示**/
+#doc {
+  padding: 19px 70px 156px 60px;
+  background-color: #eeeeed;
+}
+/***查询部分***/
+#search {
+  padding: 15px 112px 15px 30px;
+  position: relative;
+  font-size: 12px;
+  color:#aaaaaa;
+  border: #dddfe1 1px solid;
+  background-color: #fff;
+}
+#search>div:first-of-type {
+  margin-bottom: 2px;
+}
+#change {
+  position: absolute;
+  background: ;
+}
+#search .in-b {
+  display: inline-block;
+}
+#search-num {
+  margin-left: 16px;
+  margin-right: 37px;
+}
+#search-num select {
+  width: 71px;
+  padding-left: 10px;
+}
+#search-num .select:after {
+  color: #5690c8;
+}
+#search-buyer,
+#search-solder {
+  margin-left: 15px;
+  margin-right: 61px;
+}
+#search-buyer select,
+#search-solder select{
+  width: 121px;
+  padding-left: 7px;
+}
+#search-data {
+  border: #cacbcb 1px solid;
+  color: #323333;
+  background-color: #fff;
+  padding-left: 8px;
+  width: 121px;
+  line-height: 24px;
+  margin-left: 16px;
+  margin-right: 15px;
+  vertical-align: top;
+}
+#search-time {
+  margin-left: 11px;
+  margin-right: 28px;
+}
+#search-time select {
+  padding-left: 8px;
+  width: 71px;
+}
+#search-numofpeaple {
+  margin-left: 16px;
+  margin-right: 16px;
+}
+#search-numofpeaple select {
+  padding-left: 8px;
+  width: 71px;
+}
+#search-numofdeal {
+  margin-left: 10px;
+}
+#search-numofdeal select {
+  padding-left: 10px;
+  width: 121px;
+}
+/****买卖方互换的按钮****/
+#search-change {
+  position:absolute;
+  top: 24px;
+  left: 350px;
+  width: 28px;
+  height: 38px;
+  background: url(logo/logo_4.png) no-repeat;
+  font-size: 12px;
+  line-height: 37px;
+  text-align: right;
+  padding-right: 2px;
+  color: #fff;
+}
+#search button {
+  background-color: #388ac1;
+  width: 51px;
+  height: 26px;
+  color: #fff;
+  border-radius: 3px;
+  position: absolute;
+  top: 28px;
+  right: 112px;
+}
+/***价格部分***/
+#price {
+  margin-top: 9px;
+}
+#price li{
+  display: inline-block;
+  height: 65px;
+  font-family: "Microsoft YaHei";
+  font-size: 12px;
+  border-style: solid;
+  border-width: 1px;
+  border-right-color: #edeef0;
+  border-bottom-color: #edeef0;
+  border-top-color: #cacdd0;
+  border-left-color: #cacdd0;
+  margin-right: 4px;
+  vertical-align: top;
+  width: 111px;
+  background-color: #fff;
+}
+#price .time {
+  padding-left: 29px;
+  padding-top: 14px;
+  padding-bottom: 9px;
+  font-size: 12px;
+  color: #323333;
+}
+#price .price {
+  padding-left:28px;
+  font-size: 21px;
+  color: #EC6500;
+  -moz-transform: scale(0.949, 1);
+  -webkit-transform: scale(0.949, 1);
+  -ms-transform: scale(0.949, 1);
+  transform: scale(0.949, 1);
+}
+#price .history {
+  width: 130px;
+  background-image: url(logo/logo_5.png);
+  background-repeat:  no-repeat;
+  background-position: 18px center;
+  line-height: 65px;
+  padding-left: 61px;
+  margin-right: 0;
+}
+
+
+
+#price .selected:before {
+  content: "";
+  display: block;
+  height: 4px;
+  margin: -1px -1px -3px;
+  background-color: #4388c8;
+}
+#price .price:first-letter{
+  color: #adadad;
+  font-size: 14px;
+  display: inline-block;
+  margin-left: -3px;
+  margin-right: -2px;
+}
+#price .btn {
+  line-height: 65px;
+  color: #acacac;
+  text-align: center;
+  width: 31px;
+  font-size: 20px;
+}
+
+
+/*$. 通用部分*/
+.select {
+  background-color: #fff;
+  font-size: 0;
+}
+.select:after {
+  content: "\e610";
+  margin-left: -19px;
+  font-family: iconfont;
+  vertical-align: -1px;
+  font-size: 12px;
+  transform: scale(0.8,0.8);
+  display: inline-block;
+  transform-origin: left center;
+}
+select {
+  border: #cacbcb 1px solid;
+  height: 26px;
+  font-size: 12px;
+  color: #323333;
+  background: transparent;
+  position: relative;
+  z-index: 1;
+}
+.pl160 {
+  padding-left: 160px;
+}
