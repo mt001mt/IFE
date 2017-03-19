@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>SB</title>
+<style>
+/*body {
+	background-color:red;
+}*/
+#text {
+	height: 100px;
+  width: 300px;
+  display: inline-block;
+  white-space: pre-wrap;
+  overflow: auto;
+  resize: both;
+  border: #cbcbcb 1px solid;
+}
+</style>
+</head>
+<body>
+<form class="container">
+  <div id="text" contenteditable="true">This paragraph is for testing, including 123, 中文, English, 回车
+逗号全角，逗号半角,顿号、空格 Tab	and so on. </div>
+  <br/>
+  <input type="text" id="search-key" />
+  <button type="button" id="search">查询</button>
+  <div></div>
+</form>
+</body>
+</html>
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+  document.getElementById("search").addEventListener("click", btnSearch,false, false);
+  /*
+   *点击“查询”按钮，把匹配的文字变成红色
+   *@param none
+   *@return none
+   */
+  function btnSearch(){
+    var textarea = document.getElementById("text");
+    var outText = textarea.textContent;
+    var searchKey = document.getElementById("search-key").value;
+    //key不为空，也不能包含分隔符
+    if(searchKey && searchKey.search(/[^\w\u4e00-\u9fa5]/) == -1){
+      var partten = new RegExp("[\\w\\u4e00-\\u9fa5]*" + searchKey + "[\\w\\u4e00-\\u9fa5]*", "g");
+      //把匹配到的字符放入span中，设置成红色
+      var outHTML = outText.replace(partten,"<span style='color:red'>$&</span>");
+      textarea.innerHTML = outHTML;
+    }
+  }
+}, false);
+</script>
