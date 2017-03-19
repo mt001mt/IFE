@@ -159,6 +159,9 @@ aside {
   font-size: 12px;
   padding-right: 4px;
 }
+.user-data.selected{
+  background-color: #383e4e;
+}
 .user-data .selected {
   color: #ededef;
 }
