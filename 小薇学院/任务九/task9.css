@@ -832,6 +832,9 @@ select {
   z-index: 1;
   font-family: SimHei;
 }
+select:focus {
+  outline: none;
+}
 .pl160 {
   padding-left: 160px;
 }
