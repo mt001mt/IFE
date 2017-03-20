@@ -38,99 +38,101 @@ span {
   <button type="button" id="right-out">右侧出</button>
   <div></div>
 </form>
-<script> 
-/*
-*添加click事件，根据事件确定事件
-*/
-document.addEventListener("click", function(e){
-  var btn1 = document.getElementById("left-in");
-  var btn2 = document.getElementById("right-in");
-  var btn3 = document.getElementById("left-out");
-  var btn4 = document.getElementById("right-out");
-  var div = document.querySelector("div");
-  var target = e.target;
-  switch(true){
-    case (!!(btn1 === target))://点击了“左侧入”
-      e.preventDefault();
-      var num = getNum();
-      if(num !== false){
-        insertNum(num, true);
-      }
-      break;
-    case (!!(btn2 === target))://点击了“右侧入”
-      e.preventDefault();
-      var num = getNum();
-      if(num !== false){
-        insertNum(num, false);
-      }
-      break;
-    case (!!(btn3 === target))://点击了“左侧出”
-      pullNum(true);
-      break;
-    case (!!(btn4 === e.target))://点击了“右侧出”
-      pullNum(false);
-      break;
-    case (target.nodeName.toLowerCase() == "span")://点击了<span>元素
-      div.removeChild(target);
-      break;
-  }
+<script>
+document.addEventListener("DOMContentLoaded", function(){
   /*
-  *得到input的数值并返回
-  *@param none
-  *@return 如果input中不是数值，提示错误，并返回false
-  *                    是数值，返回该数值的字符串形式
+  *添加click事件，根据事件确定事件
   */
-  function getNum(){
-    var num = document.getElementById("num").value;
-    if(num === "" || num.match(/\D/)) {//没有输入数据或者输入数据有误
-      alert("请输入数据");
-      return false;
+  document.addEventListener("click", function(e){
+    var btn1 = document.getElementById("left-in");
+    var btn2 = document.getElementById("right-in");
+    var btn3 = document.getElementById("left-out");
+    var btn4 = document.getElementById("right-out");
+    var div = document.querySelector("div");
+    var target = e.target;
+    switch(true){
+      case (!!(btn1 === target))://点击了“左侧入”
+        e.preventDefault();
+        var num = getNum();
+        if(num !== false){
+          insertNum(num, true);
+        }
+        break;
+      case (!!(btn2 === target))://点击了“右侧入”
+        e.preventDefault();
+        var num = getNum();
+        if(num !== false){
+          insertNum(num, false);
+        }
+        break;
+      case (!!(btn3 === target))://点击了“左侧出”
+        pullNum(true);
+        break;
+      case (!!(btn4 === e.target))://点击了“右侧出”
+        pullNum(false);
+        break;
+      case (target.nodeName.toLowerCase() == "span")://点击了<span>元素
+        div.removeChild(target);
+        break;
     }
-    else {
-      return num;
-    }
-  }
-  /*
-  *将输入的数据num显示
-  *@param num 需要显示的数据，[String]，由getNum()得到
-  *@param dir 方向，[Boolean]，true从左边插入 false从右边插入
-  *@return none
-  */
-  function insertNum(num, dir){
-    var span = document.createElement("span");
-    span.innerHTML = num;
-    if(dir) {
-      div.insertBefore(span, div.firstElementChild);
-    }
-    else {
-      div.appendChild(span);
-    }
-  }
-  /*
-  *将显示的数据num删除一个，并在弹窗中显示这个值
-  *如果没有数据可以删除，弹窗提示无数据可删除
-  *@param dir 方向，[Boolean]，true删除左边第一个 false删除右边第一个
-  *@return none
-  */
-  function pullNum(dir){
-    var span;
-    if(div.childElementCount == 0){//没有子元素存在，无数据可删
-      alert("无数据可以删除，请重试");
-    }
-    else {
-      if(dir) {
-        span = div.removeChild(div.firstElementChild);
+    /*
+    *得到input的数值并返回
+    *@param none
+    *@return 如果input中不是数值，提示错误，并返回false
+    *                    是数值，返回该数值的字符串形式
+    */
+    function getNum(){
+      var num = document.getElementById("num").value;
+      if(num === "" || num.match(/\D/)) {//没有输入数据或者输入数据有误
+        alert("请输入数据");
+        return false;
       }
       else {
-        span = div.removeChild(div.lastElementChild);
+        return num;
       }
-      var numDisp = span.innerHTML;
-      setTimeout(function(){//先让浏览器显示数据被删除，再弹窗
-        alert("删除的数据为" + numDisp);
-      }, 10);
     }
-    span = null;
-  }
+    /*
+    *将输入的数据num显示
+    *@param num 需要显示的数据，[String]，由getNum()得到
+    *@param dir 方向，[Boolean]，true从左边插入 false从右边插入
+    *@return none
+    */
+    function insertNum(num, dir){
+      var span = document.createElement("span");
+      span.innerHTML = num;
+      if(dir) {
+        div.insertBefore(span, div.firstElementChild);
+      }
+      else {
+        div.appendChild(span);
+      }
+    }
+    /*
+    *将显示的数据num删除一个，并在弹窗中显示这个值
+    *如果没有数据可以删除，弹窗提示无数据可删除
+    *@param dir 方向，[Boolean]，true删除左边第一个 false删除右边第一个
+    *@return none
+    */
+    function pullNum(dir){
+      var span;
+      if(div.childElementCount == 0){//没有子元素存在，无数据可删
+        alert("无数据可以删除，请重试");
+      }
+      else {
+        if(dir) {
+          span = div.removeChild(div.firstElementChild);
+        }
+        else {
+          span = div.removeChild(div.lastElementChild);
+        }
+        var numDisp = span.innerHTML;
+        setTimeout(function(){//先让浏览器显示数据被删除，再弹窗
+          alert("删除的数据为" + numDisp);
+        }, 10);
+      }
+      span = null;
+    }
+  }, false);
 }, false);
 </script>
 </body>
