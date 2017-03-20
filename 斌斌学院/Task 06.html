@@ -2,28 +2,48 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>SB</title>
+<title>IFE JavaScript Task 06</title>
 <style>
-/*body {
-	background-color:red;
-}*/
-#text {
-	height: 100px;
-  width: 300px;
+.container {
+  padding-top: 50px;
+  width: 50%;
+  min-width: 300px;
+  margin-left: 25%;
+  overflow: hidden;
+}
+#left-out {
+  margin-left: 30px;
+}
+span {
   display: inline-block;
-  white-space: pre-wrap;
-  overflow: auto;
-  resize: both;
-  border: #cbcbcb 1px solid;
+  padding-left: 10px;
+  padding-right: 10px;
+  line-height: 25px;
+  font-size: 16px;
+  background-color: red;
+  color: white;
+  margin-top: 10px;
+  margin-left: 10px;
+  cursor: default;
+}
+#num {
+  vertical-align: top;
+  height: 100px;
+  width: 300px;
 }
 </style>
 </head>
+
 <body>
 <form class="container">
-  <div id="text" contenteditable="true">This paragraph is for testing, including 123, 中文, English, 回车
-逗号全角，逗号半角,顿号、空格 Tab	and so on. </div>
+  <textarea id="num">This is a test, including 123, 中文, English, 回车
+逗号全角，逗号半角,顿号、空格 Tab	and so on. </textarea>
+  <button type="button" id="left-in">左侧入</button>
+  <button type="button" id="right-in">右侧入</button>
+  <button type="button" id="left-out">左侧出</button>
+  <button type="button" id="right-out">右侧出</button>
   <br/>
-  <input type="text" id="search-key" />
+  <input type="text" id="key" required />
   <button type="button" id="search">查询</button>
   <div></div>
 </form>
@@ -31,23 +51,132 @@
 </html>
 <script>
 document.addEventListener("DOMContentLoaded", function(){
-  document.getElementById("search").addEventListener("click", btnSearch,false, false);
   /*
-   *点击“查询”按钮，把匹配的文字变成红色
-   *@param none
-   *@return none
-   */
-  function btnSearch(){
-    var textarea = document.getElementById("text");
-    var outText = textarea.textContent;
-    var searchKey = document.getElementById("search-key").value;
-    //key不为空，也不能包含分隔符
-    if(searchKey && searchKey.search(/[^\w\u4e00-\u9fa5]/) == -1){
-      var partten = new RegExp("[\\w\\u4e00-\\u9fa5]*" + searchKey + "[\\w\\u4e00-\\u9fa5]*", "g");
-      //把匹配到的字符放入span中，设置成红色
-      var outHTML = outText.replace(partten,"<span style='color:red'>$&</span>");
-      textarea.innerHTML = outHTML;
+  *添加click事件，根据事件对象确定事件
+  */
+  document.addEventListener("click", function(e){
+    var btn1 = document.getElementById("left-in");
+    var btn2 = document.getElementById("right-in");
+    var btn3 = document.getElementById("left-out");
+    var btn4 = document.getElementById("right-out");
+    var btn5 = document.getElementById("search")
+    var div = document.querySelector("div");
+    var target = e.target;
+    switch(true){
+      case (!!(btn1 === target))://点击了“左侧入”
+        var num = getNum();
+        if(num !== false){
+          insertNum(num, true);
+        }
+        break;
+      case (!!(btn2 === target))://点击了“右侧入”
+        var num = getNum();
+        if(num !== false){
+          insertNum(num, false);
+        }
+        break;
+      case (!!(btn3 === target))://点击了“左侧出”
+        pullNum(true);
+        break;
+      case (!!(btn4 === e.target))://点击了“右侧出”
+        pullNum(false);
+        break;
+      case (target.nodeName.toLowerCase() == "span")://点击了<span>元素
+        div.removeChild(target);
+        break;
+      case  (!!(btn5 === e.target))://点击了“查询”
+        search();
     }
-  }
+    /*
+    *得到input的数值并返回
+    *@param none
+    *@return 如果textarea中不是有效文本，提示错误，并返回false
+    *                    是有效文本，以逗号、空格等为间隔符，返回该文本的数组形式
+    */
+    function getNum(){
+      var num = document.getElementById("num").value;
+      if(num === "") {//没有输入文本
+        alert("请输入有效文字");
+        return false;
+      }
+      var textArray = num.split(/[^\w\u4e00-\u9fa5]+/);
+      //如果字符串开始或结尾出现一个分隔号，或者字符串中出现连续几个分隔号，数组中会出现空字符串，应当去除
+      textArray = textArray.filter(function(item, index, array){
+        if(item === ""){
+          return false;
+        }
+        return true;
+      });      
+      return textArray;
+    }
+    /*
+    *将输入的文字num显示
+    *@param num 需要显示的文字数组，Array[String]，由getNum()得到
+    *@param dir 方向，[Boolean]，true从左边插入 false从右边插入
+    *@return none
+    */
+    function insertNum(num, dir){
+      var frag = document.createDocumentFragment();
+      num.forEach(function(item, index, array){
+        var span = document.createElement("span");
+        span.innerHTML = item;
+        frag.appendChild(span);
+      });
+      if(dir) {
+        div.insertBefore(frag, div.firstElementChild);
+      }
+      else {
+        div.appendChild(frag);
+      }
+      frag = null;
+    }
+    /*
+    *将显示的数据num删除一个，并在弹窗中显示这个值
+    *如果没有数据可以删除，弹窗提示无数据可删除
+    *@param dir 方向，Boolean，true删除左边第一个 false删除右边第一个
+    *@return none
+    */
+    function pullNum(dir){
+      var span;
+      if(div.childElementCount == 0){//没有子元素存在，无数据可删
+        alert("无文字可以删除，请重试");
+      }
+      else {
+        if(dir) {
+          span = div.removeChild(div.firstElementChild);
+        }
+        else {
+          span = div.removeChild(div.lastElementChild);
+        }
+        var numDisp = span.innerHTML;
+        setTimeout(function(){//先让浏览器显示数据被删除，再弹窗
+          alert("删除的文字为" + numDisp);
+        }, 10);
+      }
+      span = null;
+    }
+    /*
+     *获取需要查询的内容，对textArray中的值进行查询
+     *called by btnSearch
+     *@param none
+     *@return none
+     */
+    function search(){
+      var searchKey = document.getElementById("key").value;
+      //从div中取得需要被查询的数组
+      var array = Array.prototype.slice.call(document.querySelector("div").children, 0);
+      //key不为空，也不能包含分隔符，数组也不能为空
+      if(searchKey && searchKey.search(/[^\w\u4e00-\u9fa5]/) == -1 && array.length){
+        array.forEach(function(item, index, array){
+          if(item.innerHTML.match(new RegExp(searchKey))){
+            item.style.backgroundColor = "blue";
+          }
+          else{
+            item.style.backgroundColor = "red";
+          }
+        })
+      }
+    }
+  }, false);
 }, false);
 </script>
