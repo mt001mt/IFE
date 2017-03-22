@@ -129,6 +129,7 @@
           temp = divListTemp[length-1];
           temp.className = temp.className.replace(/\stravesing/, "");
           traversing = false;
+          alert("遍历结束")；
         }
       }
     }
