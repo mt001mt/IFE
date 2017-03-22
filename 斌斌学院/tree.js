@@ -116,20 +116,25 @@
           divListTemp = divList,
           length = divListTemp.length;
       divListTemp[0].className += " travesing";
-      setTimeout(loop, 500);
+      setTimeout(loop, 1300);
       
       function loop(){
         var temp;
         if (i < length) {
           temp = divListTemp[i-1];
-          temp.className = temp.className.replace(/\stravesing/, "");
+          temp.className = temp.className.replace(/travesing/, "travesed");
           divListTemp[i++].className += " travesing";
-          setTimeout(loop, 500);
+          setTimeout(loop, 1300);
         } else {
           temp = divListTemp[length-1];
-          temp.className = temp.className.replace(/\stravesing/, "");
+          temp.className = temp.className.replace(/travesing/, "travesed");
           traversing = false;
-          alert("遍历结束")；
+          setTimeout(function(){
+            divListTemp.forEach(function(item){
+              item.className = item.className.replace(/travesed/, "");
+            });
+            alert("遍历结束");            
+          }, 1000);
         }
       }
     }
