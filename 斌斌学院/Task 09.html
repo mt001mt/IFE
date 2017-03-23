@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>IFE JavaScript Task 08</title>
+<style>
+body {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  flex-direction: column;
+  align-items: center;
+}
+div {
+  display: flex;
+  align-items: stretch;
+  min-height: 50px;
+  min-width: 50px;
+  box-sizing: border-box;
+  border: #000 1px solid;
+  margin: 10px;
+  background-color: #fff;
+  transition: backgound-color, 1s;
+  justify-content: center;
+}
+.travesing {
+  background-color: #00f;
+}
+.travesed {
+  background-color: #0bf;
+}
+.btn,
+.search,
+.delete,
+.add {
+  justify-content: center;
+  border: none;
+}
+button {
+  width: 150px;
+  height: 40px;
+  margin: 0 20px;
+}
+.search {
+  justify-content: center;
+  border: none;
+}
+input {
+  height: 34px;
+  width: 144px;
+}
+.matched {
+  background-color: #ff0;
+}
+.selected {
+  background-color: #aaa;
+}
+</style>
+</head>
+
+<body>
+<div class="btn">
+  <button id="DLR">DLR</button>
+  <button id="LDR">LDR</button>
+  <button id="LRD">LRD</button>
+</div>
+<div class="node" id="root">
+  Super
+  <div class="node">
+    Co
+    <div class="node">
+      Apple
+      <div class="node">Pear</div>
+      <div class="node">Pig</div>
+      <div class="node">Cola</div>
+      <div class="node">Soccor</div>
+    </div>
+    <div class="node">Phone</div>
+    <div class="node">
+      <div class="node">Book</div>
+      <div class="node">School</div>
+    </div>
+  </div>
+  <div class="node">
+    Note
+    <div class="node">
+      Human
+      <div class="node">Code</div>
+      <div class="node">Operate</div>
+      <div class="node">Man</div>
+    </div>
+    <div class="node">
+      Program
+      <div class="node">
+        Bement
+        <div class="node">Cat</div>
+      </div>
+      <div class="node">Glass</div>
+    </div>
+  </div>
+  <div class="node">Fish</div>
+</div>
+<div class="search">
+  <input id="search-input" />
+  <button id="search">Search</button>
+</div>
+<div class="delete">
+  <button id="delete">Delete</button>
+</div>
+<div class="add">
+  <input id="add-input" />
+  <button id="add">Add</button>
+</div>
+<script src="tree.js"></script>
+<!--script src="btreedisplay.js"></script-->
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+  //获取需n叉树
+  treeApp.getTree(document.getElementById("root"));
+  //显示二叉树
+  //treeApp.display();
+  //添加btn事件
+  document.getElementById("LRD").addEventListener("click", function(){
+    treeApp.traverse("LRD");
+  }, false);
+  document.getElementById("LDR").addEventListener("click", function(){
+    treeApp.traverse("LDR");
+  }, false);
+  document.getElementById("DLR").addEventListener("click", function(){
+    treeApp.traverse("DLR");
+  }, false);
+  document.getElementById("search").addEventListener("click", treeApp.search, false);
+  document.addEventListener("click", treeApp.click, false);
+  document.getElementById("delete").addEventListener("click", treeApp.delete, false);
+  document.getElementById("add").addEventListener("click", treeApp.add, false);
+}, false);
+</script>
+</body>
+</html>
