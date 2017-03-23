@@ -3,7 +3,8 @@
 (function(window){
   //定义静态私有变量
   var divTree, //二叉树，由init初始化
-      traversing = false; //遍历是否正在进行
+      traversing = null, //遍历是否正在进行
+      matchedNode = []; //搜索到的节点
   //赋值给全局变量，暴露接口
   var treeApp = {
     /*
@@ -26,12 +27,17 @@
      */
     traverse : traverse,
     /*
-     *后续遍历n叉树
-     *@param1 tree 需要遍历的n叉树
-     *@param2 callback 遍历到节点时应该进行的操作函数
+     *根据输入的根元素Element，生成n叉树。data属性中保存的是HTMLElement
+     *@param root HTMLElement，表示n叉树的根节点
      *@return undefined
      */
-    getTree : getTree
+    getTree : getTree,
+    /*
+     *根据输入的内容，搜索n叉树，并高亮符合的节点
+     *@param none
+     *@return undefined
+     */
+    search : search
   };
   window.treeApp = treeApp;
 
@@ -94,13 +100,8 @@
    *p.s. 既然有现成的后续遍历，为什么不用呢~
    */
   function traverse(order) {
-    //遍历正在进行
-    if (traversing) {
-      alert("请等待上一次遍历结束");
-      return;
-    }
-    traversing = true;
     var divList = [];
+    clear();
     //把节点data对应的div压入divList中
     switch(order) {
       case "LRD":
@@ -130,17 +131,17 @@
           temp = divListTemp[i-1];
           temp.className = temp.className.replace(/travesing/, "travesed");
           divListTemp[i++].className += " travesing";
-          setTimeout(loop, 1300);
+          traversing = setTimeout(loop, 1300);
         } else {
           temp = divListTemp[length-1];
           temp.className = temp.className.replace(/travesing/, "travesed");
-          traversing = false;
+          traversing = null;
           setTimeout(function(){
             divListTemp.forEach(function(item){
               item.className = item.className.replace(/travesed/, "");
             });
-            alert("遍历结束");            
-          }, 1000);
+            alert("遍历结束");
+          }, 1300);
         }
       }
     }
@@ -150,44 +151,120 @@
     }
   }
   /*
-   *根据输入的根元素Element，生成n叉树
+   *根据输入的根元素Element，生成n叉树。data属性中保存的是HTMLElement
    *@param root HTMLElement，表示n叉树的根节点
    *@return undefined
+   *p.s. 利用了广度优先遍历
    */
   function getTree(root) {
-    var parent,
-        node,
-        nodeQueue;
-    divTree = new Tree();
-    divTree.traverseBF(getNodefromElement);
-    node = getNodefromElement(root);
-    nodeQueue.push(node);
-    while (node)
-  }
-  /*
-   *根据输入的元素Element，返回一个Node节点
-   *@param element HTMLElement，表示应该生成Node节点的元素
-   *@return Node data和child已经赋值，parent未赋值
-   */
-  function getNodefromElement(element) {
-    var node = new Node(""),
-        childArray = Array.prototype.slice.call(element.childNodes, 0),
-        length = childArray.length,
-        child,
-        nodeType;
-    for (var i = 0; i < length; i++) {
-      child = childArray[i];
-      nodeType = child.nodeType;
-      //子节点为Element_Node
-      if (nodeType === 1) {
-        Node.children.push(child);
-      } //子节点为Text_Node
-      else if (nodeType === 3) {
-        Node.data += child.nodeValue.trim();
+    divTree = new Tree(root);
+    divTree.traverseBF(setNodeChildren);
+    //根据输入的Node节点，给该节点的children属性赋值
+    //由traverseBF调用
+    function setNodeChildren(node) {
+      var childArray, length;
+      childArray = Array.prototype.slice.call(node.data.childNodes, 0);
+      length = childArray.length;
+      for (var i = 0; i < length; i++) {
+        //子节点为Element_Node
+        if (childArray[i].nodeType === 1) {
+          node.children.push(new Node(childArray[i]));
+        }
       }
     }
-    return node;
   }
+  /*
+   *根据输入的内容，搜索n叉树，并高亮符合的节点
+   *@param none
+   *@return undefined
+   */
+  function search() {
+    var input = document.getElementById("search-input").value;
+    if (input) {
+      clear();
+      var nodeQueue = [],
+          ret = false;
+      (function traverse(currentNode) {
+        console.count("traverse被调用了：");
+        var childArray = Array.prototype.slice.call(currentNode.data.childNodes, 0),
+            length = childArray.length;
+        for (var i = 0; i < length; i++) {
+          //子节点为Element_Node && 内容和搜索的相同
+          if (childArray[i].nodeType === 3 && childArray[i].nodeValue.trim() === input) {
+            ret = true;
+            nodeQueue.push(currentNode.data);
+            break;
+          }
+        }
+        //currentNode的内容与input不同，继续递归
+        if (!ret) {
+          for (i = 0, length = currentNode.children.length; i< length; i++) {
+            nodeQueue.push(currentNode.children[i]);
+          }
+          var nextNode = nodeQueue.shift();
+          if (nextNode) {
+            traversing = setTimeout(function(){
+              currentNode.data.className = currentNode.data.className.replace(/travesing/, "travesed");
+              traverse(nextNode);
+            }, 1300);
+          } else { //没找到相应节点，且已经遍历完了
+            traversing = setTimeout(function(){
+              currentNode.data.className = currentNode.data.className.replace(/travesing/, "travesed");
+              traversing = setTimeout(function(){
+                clear();
+                alert("遍历结束，没找到相应数据");
+              }, 1300);
+            }, 1300);
+          }
+        } else {//currentNode的内容与input相同，跳出递归
+          traversing = setTimeout(function(){
+            currentNode.data.className = currentNode.data.className.replace(/travesing/, "travesed matched");
+            matchedNode.push(currentNode);
+            clearBC();
+            alert("找到节点");
+          }, 1300);
+        }
+        currentNode.data.className += " travesing";
+      })(divTree.getRoot());
+    }
+  }
+  /*
+   *将
+   *@param none
+   *@return undefined
+   */
+  function clear() {
+    if (matchedNode.length) {
+      for (var i = 0, length = matchedNode.length; i < length; i++) {
+        matchedNode[i].data.className = matchedNode[i].data.className.replace(/matched/, "");
+      }
+      matchedNode = [];
+    }
+    if (traversing !== null) {
+      clearTimeout(traversing);
+      divTree.traverseBF(cleartraverse);
+      traversing = null;
+    }
+    //遍历树，把所有被遍历标记的class去除
+    function cleartraverse(node) {
+      node.data.className = node.data.className.replace(/travesing|travesed/, "");
+    }
+  }
+  /*
+   *将
+   *@param none
+   *@return undefined
+   */
+  function clearBC() {
+    divTree.traverseBF(cleartraverse);
+    traversing = null;
+    //遍历树，把所有被遍历标记的class去除
+    function cleartraverse(node) {
+      node.data.className = node.data.className.replace(/travesing|travesed/, "");
+    }
+  }
+  
+  
   
   /**********************************************************/
   /*******************创建二叉树的构造函数**********************/
@@ -204,6 +281,14 @@
     var node = new Node(data);
     this._root = node;
   }
+  /*
+   *返回树的根节点
+   *@param none
+   *@return Node
+   */
+  Tree.prototype.getRoot = function() {
+    return this._root;
+  };
   /*
    *树的深度优先遍历 LRD
    *@param callback Function 遍历到节点时应该进行的操作函数

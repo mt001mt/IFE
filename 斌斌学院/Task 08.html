@@ -38,6 +38,17 @@ button {
   height: 40px;
   margin: 0 20px;
 }
+.search {
+  justify-content: center;
+  border: none;
+}
+input {
+  height: 34px;
+  width: 144px;
+}
+.matched {
+  background-color: #ff0;
+}
 </style>
 </head>
 
@@ -47,7 +58,7 @@ button {
   <button id="LDR">LDR</button>
   <button id="LRD">LRD</button>
 </div>
-<div>
+<div id="root">
   Super
   <div>
     Co
@@ -83,14 +94,16 @@ button {
   </div>
   <div>Fish</div>
 </div>
-  
+<div class="search">
+  <input id="search-input" />
+  <button id="search">Search</button>
 </div>
 <script src="tree.js"></script>
 <!--script src="btreedisplay.js"></script-->
 <script>
 document.addEventListener("DOMContentLoaded", function(){
   //获取需n叉树
-  //treeApp.init();
+  treeApp.getTree(document.getElementById("root"));
   //显示二叉树
   //treeApp.display();
   //添加btn事件
@@ -103,6 +116,7 @@ document.addEventListener("DOMContentLoaded", function(){
   document.getElementById("DLR").addEventListener("click", function(){
     treeApp.traverse("DLR");
   }, false);
+  document.getElementById("search").addEventListener("click", treeApp.search, false);
 }, false);
 </script>
 </body>
