@@ -2,8 +2,7 @@
 
 (function(window){
   //定义静态私有变量
-  var depth, //二叉树深度，由init初始化
-      divTree, //二叉树，由init初始化
+  var divTree, //二叉树，由init初始化
       traversing = false; //遍历是否正在进行
   //赋值给全局变量，暴露接口
   var treeApp = {
@@ -25,7 +24,14 @@
      *@param2 callback 遍历到节点时应该进行的操作函数
      *@return undefined
      */
-    traverse : traverse
+    traverse : traverse,
+    /*
+     *后续遍历n叉树
+     *@param1 tree 需要遍历的n叉树
+     *@param2 callback 遍历到节点时应该进行的操作函数
+     *@return undefined
+     */
+    getTree : getTree
   };
   window.treeApp = treeApp;
 
@@ -143,7 +149,45 @@
       divList.push(node.data);
     }
   }
-
+  /*
+   *根据输入的根元素Element，生成n叉树
+   *@param root HTMLElement，表示n叉树的根节点
+   *@return undefined
+   */
+  function getTree(root) {
+    var parent,
+        node,
+        nodeQueue;
+    divTree = new Tree();
+    divTree.traverseBF(getNodefromElement);
+    node = getNodefromElement(root);
+    nodeQueue.push(node);
+    while (node)
+  }
+  /*
+   *根据输入的元素Element，返回一个Node节点
+   *@param element HTMLElement，表示应该生成Node节点的元素
+   *@return Node data和child已经赋值，parent未赋值
+   */
+  function getNodefromElement(element) {
+    var node = new Node(""),
+        childArray = Array.prototype.slice.call(element.childNodes, 0),
+        length = childArray.length,
+        child,
+        nodeType;
+    for (var i = 0; i < length; i++) {
+      child = childArray[i];
+      nodeType = child.nodeType;
+      //子节点为Element_Node
+      if (nodeType === 1) {
+        Node.children.push(child);
+      } //子节点为Text_Node
+      else if (nodeType === 3) {
+        Node.data += child.nodeValue.trim();
+      }
+    }
+    return node;
+  }
   
   /**********************************************************/
   /*******************创建二叉树的构造函数**********************/
@@ -211,10 +255,10 @@
     var queue = [];
     var currentNode = this._root;
     while(currentNode){
+      callback(currentNode);
       for(var i = 0, length = currentNode.children.length; i < length; i++){
         queue.push(currentNode.children[i]);
       }
-      callback(currentNode);
       currentNode = queue.shift();
     }
   };
