@@ -4,7 +4,8 @@
   //定义静态私有变量
   var divTree, //二叉树，由init初始化
       traversing = null, //遍历是否正在进行
-      matchedNode = []; //搜索到的节点
+      matchedNode = [], //搜索到的节点
+      selectedNode; //选中状态的节点
   //赋值给全局变量，暴露接口
   var treeApp = {
     /*
@@ -37,7 +38,25 @@
      *@param none
      *@return undefined
      */
-    search : search
+    search : search,
+    /*
+     *如果点击了表示节点的div，将其选中
+     *@param event 事件对象
+     *@return undefined
+     */
+    click : click,
+    /*
+     *根据选中的内容，删除DOM和n叉树中相应的节点
+     *@param none
+     *@return undefined
+     */
+    delete : deleteNE,
+    /*
+     *根据选中的节点，增加选中节点的DOM和n叉树中相应的子节点
+     *@param none
+     *@return undefined
+     */
+    add : addNE
   };
   window.treeApp = treeApp;
 
@@ -162,13 +181,17 @@
     //根据输入的Node节点，给该节点的children属性赋值
     //由traverseBF调用
     function setNodeChildren(node) {
-      var childArray, length;
+      var childArray,
+          length,
+          child;
       childArray = Array.prototype.slice.call(node.data.childNodes, 0);
       length = childArray.length;
       for (var i = 0; i < length; i++) {
         //子节点为Element_Node
         if (childArray[i].nodeType === 1) {
-          node.children.push(new Node(childArray[i]));
+          child = new Node(childArray[i]);
+          child.parent = node;
+          node.children.push(child);
         }
       }
     }
@@ -185,7 +208,6 @@
       var nodeQueue = [],
           ret = false;
       (function traverse(currentNode) {
-        console.count("traverse被调用了：");
         var childArray = Array.prototype.slice.call(currentNode.data.childNodes, 0),
             length = childArray.length;
         for (var i = 0; i < length; i++) {
@@ -229,7 +251,7 @@
     }
   }
   /*
-   *将
+   *停止遍历或者搜索，将遍历和搜索改变的背景色去除
    *@param none
    *@return undefined
    */
@@ -251,7 +273,7 @@
     }
   }
   /*
-   *将
+   *将遍历改变的背景色去除
    *@param none
    *@return undefined
    */
@@ -263,8 +285,85 @@
       node.data.className = node.data.className.replace(/travesing|travesed/, "");
     }
   }
-  
-  
+  /*
+   *如果点击了表示节点的div，将其选中
+   *@param none
+   *@return undefined
+   */
+  function click(e) {    
+    var target = e.target;
+    if (target.nodeType === 1 && target.className.match("node")) {
+      clear();
+      if (selectedNode) {
+        selectedNode.data.className = selectedNode.data.className.replace(/selected/, "");
+        selectedNode = null;
+      }
+      target.className += " selected";
+      selectedNode = searchImmed(target);
+    } else if (selectedNode && target.nodeName.toLowerCase() !== "button" && target.nodeName.toLowerCase() !== "input") {
+      clear();
+      selectedNode.data.className = selectedNode.data.className.replace(/selected/, "");
+      selectedNode = null;
+    }
+  }
+  /*
+   *根据输入的内容，搜索n叉树，并返回搜索结果
+   *@param HTMLElement
+   *@return node 找到相应节点，返回该节点
+   *        null 没找到相应节点
+   */
+  function searchImmed(target) {
+    var nodeQueue = [],
+        currentNode = divTree.getRoot();
+    while (currentNode) {
+      if (currentNode.data === target) {
+        return currentNode;
+      }
+      for (var i = 0, length = currentNode.children.length; i < length; i++) {
+        nodeQueue.push(currentNode.children[i]);
+      }
+      currentNode = nodeQueue.shift();
+    }
+    return null;
+  }
+  /*
+   *根据选中的节点，删除DOM和n叉树中相应的节点
+   *@param none
+   *@return undefined
+   */
+  function deleteNE() {
+    clear();
+    if (!selectedNode) {
+      return;
+    }
+    //删除n叉树中的Node
+    var parentChildren = selectedNode.parent.children,
+        index = parentChildren.indexOf(selectedNode);
+    parentChildren.splice(index, 1);
+    //删除DOM中的Element
+    selectedNode.data.parentNode.removeChild(selectedNode.data);
+    selectedNode.data = null;
+    selectedNode = null;
+  }
+  /*
+   *根据选中的节点，增加选中节点的DOM和n叉树中相应的子节点
+   *@param none
+   *@return undefined
+   */
+  function addNE() {
+    clear();
+    var input = document.getElementById("add-input").value;
+    if (!input || !selectedNode) {
+      return;
+    }
+    var div =document.createElement("div");
+    div.innerHTML = input;
+    div.className = "node";
+    selectedNode.data.appendChild(div);
+    var node = new Node(div);
+    node.parent = selectedNode;
+    selectedNode.children.push(node);
+  }
   
   /**********************************************************/
   /*******************创建二叉树的构造函数**********************/
@@ -359,7 +458,7 @@
         count = 0,
         nodeQueue = [],
         i, j, k, levelLength;
-    if (data instanceof Array && data.length > 0) {//console.log(data);
+    if (data instanceof Array && data.length > 0) {
       node = new Node(data[count++]);
       this._root = node;
       nodeQueue.push(node);
