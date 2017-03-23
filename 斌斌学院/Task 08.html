@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>IFE JavaScript Task 08</title>
+<style>
+body {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  flex-direction: column;
+  align-items: center;
+}
+div {
+  display: flex;
+  align-items: stretch;
+  min-height: 50px;
+  min-width: 50px;
+  box-sizing: border-box;
+  border: #000 1px solid;
+  margin: 10px;
+  background-color: #fff;
+  transition: backgound-color, 1s;
+  justify-content: center;
+}
+.travesing {
+  background-color: #00f;
+}
+.travesed {
+  background-color: #0bf;
+}
+.btn {
+  justify-content: center;
+  border: none;
+}
+button {
+  width: 150px;
+  height: 40px;
+  margin: 0 20px;
+}
+.search {
+  justify-content: center;
+  border: none;
+}
+input {
+  height: 34px;
+  width: 144px;
+}
+.matched {
+  background-color: #ff0;
+}
+</style>
+</head>
+
+<body>
+<div class="btn">
+  <button id="DLR">DLR</button>
+  <button id="LDR">LDR</button>
+  <button id="LRD">LRD</button>
+</div>
+<div id="root">
+  Super
+  <div>
+    Co
+    <div>
+      Apple
+      <div>Pear</div>
+      <div>Pig</div>
+      <div>Cola</div>
+      <div>Soccor</div>
+    </div>
+    <div>Phone</div>
+    <div>
+      <div>Book</div>
+      <div>School</div>
+    </div>
+  </div>
+  <div>
+    Note
+    <div>
+      Human
+      <div>Code</div>
+      <div>Operate</div>
+      <div>Man</div>
+    </div>
+    <div>
+      Program
+      <div>
+        Bement
+        <div>Cat</div>
+      </div>
+      <div>Glass</div>
+    </div>
+  </div>
+  <div>Fish</div>
+</div>
+<div class="search">
+  <input id="search-input" />
+  <button id="search">Search</button>
+</div>
+<script src="tree.js"></script>
+<!--script src="btreedisplay.js"></script-->
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+  //获取需n叉树
+  treeApp.getTree(document.getElementById("root"));
+  //显示二叉树
+  //treeApp.display();
+  //添加btn事件
+  document.getElementById("LRD").addEventListener("click", function(){
+    treeApp.traverse("LRD");
+  }, false);
+  document.getElementById("LDR").addEventListener("click", function(){
+    treeApp.traverse("LDR");
+  }, false);
+  document.getElementById("DLR").addEventListener("click", function(){
+    treeApp.traverse("DLR");
+  }, false);
+  document.getElementById("search").addEventListener("click", treeApp.search, false);
+}, false);
+</script>
+</body>
+</html>
