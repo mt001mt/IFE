@@ -1,0 +1,28 @@
+@charset "utf-8";
+/*purify*/
+body,div,ul,li,p,figure,h1,h2,h3,h4,h5,h6,hr,input,td,button{
+	margin:0;
+	padding:0;
+}
+hr{
+    border:1px solid black;
+    height:0;
+    width:auto;
+}
+input:hover,
+input:focus {
+  outline: none;
+}
+button {
+  border: none;
+}
+a {
+  text-decoration: none;
+}
+
+/*myOwnCss*/
+.my-select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
