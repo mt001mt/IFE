@@ -12,6 +12,8 @@
 /*1. 全局样式*/
 html {
   max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
   font-family: SimHei;
   font-size: 32px;
   line-height: 1;
