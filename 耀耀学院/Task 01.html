@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>IFE JavaScript Task 02</title>
+<style>
+	body{
+		min-width: 1000px;
+	}
+	form {
+		text-align: right;
+		font-size: 30px;
+		font-family: simhei;
+		width: 800px;
+	}
+	p{
+		padding: 0;
+		margin: 10px 0 20px 350px;
+		color: #ababab;
+		font-size: 20px;
+		text-align: left;
+	}
+	input{
+		font-size: 30px;
+		border-radius: 5px;
+	}
+	input[type="button"] {
+    border: none;
+		background: #2F79BA;
+	}
+</style>
+</head>
+
+<body>
+<form>
+<label>名称 <input type="text" name="name"/></label>
+<input type="button" value="验证"/>
+<p class="name">必填，长度为4~16个字符</p>
+</form>
+</body>
+</html>
+<script>
+(function(){
+	document.addEventListener("DOMContentLoaded", function(){
+		document.querySelector("input[type='button']").addEventListener("click", check, false);
+		//点击“验证”按钮触发的事件
+		function check() {
+      var p = document.querySelector(".name"),
+          input = document.querySelector("input[name='name']"),
+          text = input.value,
+          len;
+      //名称没填
+      if (!text) {
+        p.innerHTML = "名称不能为空";
+        p.style.color = "#dd010d";
+        return;
+      }
+      //把中文代替为2个英文字母
+      text = text.replace(/[^\x00-\xff]/g,"aa");
+      len = text.length;
+      console.log(text);
+      console.log(len);
+      if (len<4) {//名称少于4个
+        p.innerHTML = "名称字符不能少于4个";
+        input.style.borderColor = "#dd010d";//名称不符合显示红色
+        p.style.color = "#dd010d";
+        return;
+      }
+      if (len>16) {//名称多于16个
+        p.innerHTML = "名称字符不能多于16个";
+        input.style.borderColor = "#dd010d";//名称不符合显示红色
+        p.style.color = "#dd010d";
+        return;
+      }
+      //格式正确
+      input.style.borderColor = "#5ebb46";
+      p.innerHTML = "名称格式正确";
+      p.style.color = "#5ebb46";
+      return;
+    }
+  }, false);
+})();
+
+</script>
