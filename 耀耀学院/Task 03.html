@@ -4,41 +4,53 @@
 <meta charset="utf-8">
 <title>IFE JavaScript Task 03</title>
 <style>
-form{
+form {
 	text-align: center;
 	margin-top: 100px;
 	font-size: 20px;
 }
-label{
+label {
 	line-height: 40px;
 }
-select{
+select {
 	vertical-align: baseline;
 	font-size: 20px;
 	align-items: flex-end;
 }
-input{
+input {
 	font-size: 20px;
 }
-.no_student{
+.no_student {
 	display: none;
+}
+.student {
+	display: none;
+}
+#student:checked~.student {
+  display: block;
+}
+#no_student:checked~.no_student {
+  display: block;
 }
 </style>
 </head>
 
 <body>
 <form>
-	<label><input type="radio" name="student" value="student" id="student" checked />在校生</label>
-	<label><input type="radio" name="student" value="no_student" id="no_student" />非在校生</label>
+	<input type="radio" name="student" value="student" id="student" checked /><!--
+--><label for="student">在校生</label>
+	<input type="radio" name="student" value="no_student" id="no_student" /><!--
+--><label for="no_student">非在校生</label>
 	<div class="student">
 		<label>学校</label>
-		<select name="city">
-			<option value="1" checked>北京</option>
-			<option value="2">上海</option>
+		<select name="city" class="city">
+			<option value="0">北京</option>
+			<option value="1">上海</option>
+      <option value="2">广东</option>
 		</select>
-		<select>
-			<option value="1.1"  checked>北京大学</option>
-			<option value="1.2">清华大学</option>
+		<select name="university" class="university">
+			<option value="0">北京大学</option>
+			<option value="1">清华大学</option>
 		</select>
 	</div>
 	<div class="no_student">
@@ -49,10 +61,21 @@ input{
 </html>
 <script>
 document.addEventListener("DOMContentLoaded", function(){
-			document.addEventListen("change", function(){//单选框或下拉菜单发生变化时
-				var stu = document.querySelector("#student");
-				var n_stu = document.querySelector("#no_student");
-				var 
-			}, false);
-		}, false);
+  //单选框或下拉菜单发生变化时
+  document.querySelector(".city").addEventListener("change", function(e){
+    var select = document.querySelector(".university"),
+        fragment = document.createDocumentFragment(),
+        innerHTML = "";
+        //大学列表，二维数组，第一维为城市，第二维为大学
+        universityList = [
+          ["北京大学", "清华大学"],//北京
+          ["复旦大学","上海交通大学"],//上海
+          ["华南理工大学","中山大学"]//广东
+                         ];
+    universityList[e.target.value].forEach(function(item,index){
+      innerHTML += '<option value="' + index + '">' + item + '</option>';
+    });
+    select.innerHTML = innerHTML;
+  }, false);
+}, false);
 </script>
