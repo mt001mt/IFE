@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.border {
+  position: relative;
+  margin-top: 20px;
+  width: 50px;
+  height: 50px;
+  border: #000 1px solid;  
+}
+.block {
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  background-color: #f00;
+}
+.block:before {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 15px;
+  background-color: #00f;
+}
+.item-command {
+  display: flex;
+  margin-top: 20px;
+  justify-content: center;
+}
+button {
+  margin: 0 10px 0 10px;
+}
+@keyframes border-radius {
+  0% {    border-radius: 0%; }
+  33% {    border-radius: 50%; }
+  67% {    border-radius: 50%; }
+  100% {    border-radius: 0%; }
+}
+@keyframes rotate-tl {
+  0% {  transform: rotate(0deg); }
+  100% {  transform: rotate(-90deg); }
+}
+@keyframes rotate-tr {
+  0% {  transform: rotate(0deg); }
+  100% {  transform: rotate(90deg); }
+}
+@keyframes rotate-tb {
+  0% {  transform: rotate(0deg); }
+  100% {  transform: rotate(180deg); }
+}
+@keyframes rotate-rl {
+  0% {  transform: rotate(90deg); }
+  100% {  transform: rotate(0deg); }
+}
+@keyframes rotate-rr {
+  0% {  transform: rotate(90deg); }
+  100% {  transform: rotate(180deg); }
+}
+@keyframes rotate-rb {
+  0% {  transform: rotate(90deg); }
+  100% {  transform: rotate(270deg); }
+}
+@keyframes rotate-bl {
+  0% {  transform: rotate(180deg); }
+  100% {  transform: rotate(90deg); }
+}
+@keyframes rotate-br {
+  0% {  transform: rotate(180deg); }
+  100% {  transform: rotate(270deg); }
+}
+@keyframes rotate-bb {
+  0% {  transform: rotate(180deg); }
+  100% {  transform: rotate(360deg); }
+}
+@keyframes rotate-ll {
+  0% {  transform: rotate(270deg); }
+  100% {  transform: rotate(180deg); }
+}
+@keyframes rotate-lr {
+  0% {  transform: rotate(270deg); }
+  100% {  transform: rotate(360deg); }
+}
+@keyframes rotate-lb {
+  0% {  transform: rotate(270deg); }
+  100% {  transform: rotate(450deg); }
+}
+</style>
+</head>
+
+<body>
+<div class="border">
+  <div class="block"></div>
+</div>
+<div class="item-command">
+  <button id="turnLeft">TUN LEF</button>
+  <button id="turnRight">TUN RIG</button>
+  <button id="turnBack">TUN BAC</button>
+</div>
+<script>
+var toward = 0,
+    turnArray = [
+      ["tl", "tr","rb"],
+      ["rl", "rr","rb"],
+      ["bl", "br","bb"],
+      ["ll", "lr","lb"],
+    ],
+    box = document.querySelector(".block");
+document.querySelector("#turnLeft").onclick = function(){
+  setAnimation(-1);
+};
+document.querySelector("#turnRight").onclick = function(){
+  setAnimation(1);
+};
+document.querySelector("#turnBack").onclick = function(){
+  setAnimation(2);
+};
+function setAnimation(num) {
+  box.style.animation = "";
+  box.style.animation = "border-radius 3s, rotate-" + turnArray[toward][num<0?0:num] + " 1s 1s both";
+  console.log(document.querySelector(".block").style.animation);
+  toward = (toward + num + 4) % 4;
+}
+
+</script>
+</body>
+</html>
