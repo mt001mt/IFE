@@ -1,9 +1,20 @@
 // JavaScript Document
 
 document.addEventListener("DOMContentLoaded", function(){
-  document.querySelector("button").addEventListener("click", block.click);
+  document.querySelector("#excute").addEventListener("click", block.click);
+  document.querySelector("#go").addEventListener("click", function() {
+    block.click("GO");
+  });
+  document.querySelector("#turnLeft").addEventListener("click", function() {
+    block.click("TUN LEF");
+  });
+  document.querySelector("#turnRight").addEventListener("click", function() {
+    block.click("TUN RIG");
+  });
+  document.querySelector("#turnBack").addEventListener("click", function() {
+    block.click("TUN BAC");
+  });
 });
-
 //将小方块的指令封装，用全局变量block暴露接口
 (function(window) {
   var box = document.querySelector(".rect-box"),
@@ -24,18 +35,18 @@ document.addEventListener("DOMContentLoaded", function(){
    *@return undefined
    */
   function click() {
-    var command = commandElem.value;
-    switch(command.toLowerCase()){
-      case "go":
+    var command = arguments[0] || commandElem.value;
+    switch (command) {
+      case "GO":
         go();
         return;
-      case "tun lef":
+      case "TUN LEF":
         turn(-1);
         return;
-      case "tun rig":
+      case "TUN RIG":
         turn(1);
         return;
-      case "tun bac":
+      case "TUN BAC":
         turn(+2);
         return;
     }

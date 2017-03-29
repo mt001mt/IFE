@@ -60,9 +60,16 @@ td {
   height: 10px;
   background-color: #00f;
 }
-.item3 {	margin-top: 20px; }
+.item3,
+.item4 {
+  display: flex;
+  margin-top: 20px;
+  justify-content: center;
+}
 input {  vertical-align: middle; }
 button {
+  margin-left: 10px;
+  margin-right: 10px;
   background-color: #fff;
   border: #ededed 1px solid;
   border-radius: 5px;
@@ -120,7 +127,13 @@ button:focus {  outline: none; }
 	</div>
 	<div class="item3">
 	  <input type="text" name="command" id="command" />
-	  <button>执行</button>
+	  <button id="excute">执行</button>
+	</div>
+	<div class="item4">
+	  <button id="go">GO</button>
+	  <button id="turnLeft">TUN LEF</button>
+	  <button id="turnRight">TUN RIG</button>
+	  <button id="turnBack">TUN BAC</button>
 	</div>
 </div>
 <script src="Task 04.js"></script>
