@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>IFE JavaScript Task 05</title>
+<style>
+body {
+	display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+}
+.item1 {
+	display: flex;
+  flex-direction: column;
+}
+.column {
+	line-height: 40px;
+}
+.column:first-of-type {
+  width: 1px;
+	height: 21px;
+}
+.item2 {
+	display: flex;
+  flex-direction: column;
+}
+.row {
+  display: table-cell;
+	width: 40px;
+  text-align: center;
+}
+.tableborder {
+  position: relative;
+  box-sizing: border-box;
+  height: 401px;
+  width: 401px;
+  border: #000 1px solid;
+  z-index: 2;
+}
+table {
+  margin-top: -401px;
+  border-collapse: collapse;
+}
+td {
+  box-sizing: border-box;
+	height: 40px;
+  width: 40px;
+  border: #d2d2d2 1px solid;
+}
+#rect-box {
+  position: absolute;
+  top: 199px;
+  left: 199px;
+  width: 41px;
+  height: 41px;
+  overflow: hidden;
+  background-color: #f00;
+  transition: left 1s ease 0s,
+              top 1s ease 0s,
+              transform 1s ease 1s,
+              border-radius 1s ease 0s;
+}
+#rect-box div {
+  height: 10px;
+  background-color: #00f;
+}
+.item-command {
+  display: flex;
+  margin-top: 20px;
+  justify-content: center;
+}
+input {  vertical-align: middle; }
+button {
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: #fff;
+  border: #ededed 1px solid;
+  border-radius: 5px;
+  vertical-align: middle;
+}
+button:focus {  outline: none; }
+</style>
+</head>
+
+<body>
+<div class="item1">
+  <div class="column"></div>
+  <div class="column">1</div>
+  <div class="column">2</div>
+  <div class="column">3</div>
+  <div class="column">4</div>
+  <div class="column">5</div>
+  <div class="column">6</div>
+  <div class="column">7</div>
+  <div class="column">8</div>
+  <div class="column">9</div>
+  <div class="column">10</div>
+</div>
+<div class="item2">
+	<div>
+	  <div class="row">1</div>
+	  <div class="row">2</div>
+	  <div class="row">3</div>
+	  <div class="row">4</div>
+	  <div class="row">5</div>
+	  <div class="row">6</div>
+	  <div class="row">7</div>
+	  <div class="row">8</div>
+	  <div class="row">9</div>
+	  <div class="row">10</div>
+	</div>
+	<div>
+    <div class="tableborder">
+      <div id="rect-box"><div></div></div>
+    </div>
+    <table>
+      <tbody>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      </tbody>
+    </table>
+	</div>
+	<div class="item-command">
+	  <input type="text" name="command" id="command" />
+	  <button id="excute">执行</button>
+	</div>
+	<div class="item-command">
+	  <button id="go">GO</button>
+	  <button id="turnLeft">TUN LEF</button>
+	  <button id="turnRight">TUN RIG</button>
+	  <button id="turnBack">TUN BAC</button>
+	</div>
+	<div class="item-command">
+	  <button id="travelLeft">TRA LEF</button>
+	  <button id="travelTop">TRA TOP</button>
+	  <button id="travelRight">TRA RIG</button>
+	  <button id="travelBottom">TRA BOT</button>
+	</div>
+	<div class="item-command">
+	  <button id="moveLeft">MOV LEF</button>
+	  <button id="moveTop">MOV TOP</button>
+	  <button id="moveRight">MOV RIG</button>
+	  <button id="moveBottom">MOV BOT</button>
+	</div>
+</div>
+<script src="Task 05.js"></script>
+</body>
+</html>
