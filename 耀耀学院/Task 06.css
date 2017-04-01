@@ -1,0 +1,174 @@
+@charset "utf-8";
+body,div,ul,li,p,figure{
+	margin:0;
+	padding:0;
+}
+body{  padding:20px; }
+div{
+    border:black 1px solid;
+    box-sizing:border-box;
+}
+div.team{
+  margin-bottom: 20px;
+  padding:20px;
+  background:#eee;
+  border:1px solid #999;
+  overflow:hidden;
+}
+div.team>div{
+  background-color:white;
+  padding:20px;
+}
+div.teamname{
+  width: 200px;
+  height: 122px;
+  float: left;
+  background-image: url("../小薇学院/任务三/pic/team_logo.jpg");
+  background-size: 80px 80px;
+  background-repeat: no-repeat;
+  background-positon: left middle;
+  background-origin: content-box;
+}
+div.teamintr{
+  margin-left:220px;
+  margin-right:140px;
+}
+div.teammemb{
+  width:120px;
+  float:right;
+}
+div.teamintr p{
+  font-size:22px;
+  text-indent:1.6em;
+  white-space:pre-wrap;
+}
+div.teamname img{
+  float:left;
+}
+div.teamname p{
+  font:24px LiSu, SimSun;
+  text-align:right;
+  padding-right:20px;
+}
+div.teammemb figure{
+  border:black 1px solid;
+  margin-bottom:20px;
+  height:78px;
+  width:78px;
+}
+div.teammemb figure:last-of-type{
+  margin:0;
+}
+/*****************/
+/*下面是浮出层的样式*/
+/*****************/
+.click {
+  display: block;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 30px;
+  color: #ceb180;
+  background-color: #f0f;
+}
+#disable-scroll {
+  margin-top: 5px;
+  display: block;
+  margin-left: auto;
+}
+#mask {
+  position: fixed;
+  /*display: none;*/
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(122,122,122,0.5);
+}
+.popover {
+  position: relative;
+  width: 400px;
+  height: 200px;
+  box-sizing: border-box;
+  background-color: #fff;
+  cursor: default;
+}
+.popover h5 {
+  margin: 0;
+  padding: 0 0 0 10px;
+  line-height: 40px;
+  font-size: 20px;
+  color: #ddd;
+  background-color: #aaa;
+}
+.popover p {
+  margin-top: 10px;
+  padding: 0 0 0 10px;
+  font-size: 20px;
+}
+.popover button {
+  position: absolute;
+  bottom: 5px;
+  width: 90px;
+  height: 30px;
+  color: #ddd;
+  border: #333 1px solid;
+  background-color: #888;
+}
+.resize {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border: none;
+  background-color: green;
+}
+#resize-t {
+  top: 0;
+  left: 0;
+  right: 0;
+  width: auto;
+  cursor: n-resize;
+}
+#resize-b {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: auto;
+  cursor: s-resize;
+}
+#resize-l {
+  left: 0;
+  top: 0;
+  bottom: 0;
+  height: auto;
+  cursor: w-resize;
+}
+#resize-r {
+  right: 0;
+  top: 0px;
+  bottom: 0;
+  height: auto;
+  cursor: e-resize;
+}
+#resize-tr {
+  top: 0;
+  right: 0;
+  cursor: ne-resize;
+}
+#resize-tl {
+  top: 0;
+  left: 0;
+  cursor: nw-resize;
+}
+#resize-br {
+  bottom: 0;
+  right: 0;
+  cursor: se-resize;
+}
+#resize-bl {
+  bottom: 0;
+  left: 0;
+  cursor: sw-resize;
+}
+#popover-confirm {  right: 115px; }
+#popover-cancel {  right: 10px; }
