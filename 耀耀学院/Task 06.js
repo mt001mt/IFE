@@ -332,9 +332,7 @@ var popover = function() {
         bottomRight = document.createElement("div"),
         fragment = document.createDocumentFragment(),
 
-        oStyle = getComputedStyle(obj), //p is short for obj which is the argument
-        width = "width: " + obj.offsetWidth + "px; ",
-        height = "height: " + obj.offsetHeight + "px; ",
+        oStyle = getComputedStyle(obj), //o is short for obj which is the argument
         posTop = "top: -" + (oStyle.borderTopWidth || 0) + "; ", //pos is short for position
         posRight = "right: -" + (oStyle.borderRightWidth || 0) + "; ",
         posBottom = "bottom: -" + (oStyle.borderBottomWidth || 0) + "; ", 
@@ -345,10 +343,10 @@ var popover = function() {
         initOffsetLeft, initOffsetTop, //mousedown时obj位置
         target; //mousedown时的鼠标点击的元素
 
-    top.style.cssText = "position: absolute; " + posTop + posLeft + "margin: 0; " + width + "height: 5px; border: none; cursor: n-resize;";
-    right.style.cssText = "position: absolute; " + posTop + posRight + "margin: 0; " + height + "width: 5px; border: none; cursor: e-resize;";
-    bottom.style.cssText = "position: absolute; " + posBottom + posLeft + "margin: 0; " + width + "height: 5px; border: none; cursor: s-resize;";
-    left.style.cssText = "position: absolute; " + posTop + posLeft + "margin: 0; " + height + "width: 5px; border: none; cursor: w-resize;";
+    top.style.cssText = "position: absolute; " + posTop + posLeft + posRight + "margin: 0; " + "height: 5px; border: none; cursor: n-resize;";
+    right.style.cssText = "position: absolute; " + posTop + posRight + posBottom + "margin: 0; " + "width: 5px; border: none; cursor: e-resize;";
+    bottom.style.cssText = "position: absolute; " + posBottom + posLeft + posRight + "margin: 0; " + "height: 5px; border: none; cursor: s-resize;";
+    left.style.cssText = "position: absolute; " + posTop + posLeft + posBottom + "margin: 0; " + "width: 5px; border: none; cursor: w-resize;";
     topRight.style.cssText = "position: absolute; " + posTop + posRight+ "margin: 0; " + "height: 5px; width: 5px; border: none; cursor: ne-resize;";
     topLeft.style.cssText = "position: absolute; " + posTop + posLeft + "margin: 0; " + "height: 5px; width: 5px; border: none; cursor: nw-resize;";
     bottomRight.style.cssText = "position: absolute; " + posBottom + posRight + "margin: 0; " + "height: 5px; width: 5px; border: none; cursor: se-resize;";
