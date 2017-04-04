@@ -23,7 +23,7 @@ div.teamname{
     background-image:url(pic/team_logo.jpg);
     background-size:80px 80px;
     background-repeat:no-repeat;
-    background-positon:left middle;
+    background-position:left center;
     background-origin:content-box;
 }
 div.teamintr{
