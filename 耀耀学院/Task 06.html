@@ -2,7 +2,7 @@
 <html>
 <meta charset="utf-8">
 <head>
-<title>Task3 By MT</title>
+<title>Task6 By MT</title>
 <link type="text/css" rel="stylesheet" href="Task 06.css">
 </head>
 
@@ -23,8 +23,9 @@
 		<p>1990年学校对校徽设计进行了征集。经广泛征求专家和师生的意见，大多数师生员工倾向于以传统的“求是鹰”为主体所构成的校徽设计稿。认为表现刚健、博击个性的“求是鹰”已作为浙大的象征，并在广大师生员工和校友中留下了深刻的印象。因而，保留三十年代浙大校徽中求是鹰的基本形状，在一定程度上也体现了历史的继承性。</p>
 		<p>在1991年1月22日举行了校务会议上，学校党政领导对校徽方案作了审议，基本确定了校徽方案，并提出了修改意见。据此，校长办公室对校徽方案重新作了调整和绘制。1991年1月31日的校务会议再次审议了修改后的校徽。这样，校徽获得正式通过。</p>
 		<button class="click" id="click0">点我出浮出层</button>
-		<button id="disable-scroll">点我弹出浮出层后禁用滚动</button>
+		<button id="disable-scroll">点我~现在浮出层弹出后，启用滚动</button>
 	</div>
+  <button id="set-popover">什么？你还想自己设置浮出层的宽高？那么点我吧~</button>
 </div>
 <div class="team">
 	<div class="teamname">
@@ -84,18 +85,19 @@
   <div class="popover">
     <h5 id="popover-drag">这是一个浮出层</h5>
     <p>这是一个浮出层</p>
-    <button id="popover-confirm">确定</button>
-    <button id="popover-cancel">取消</button>
-    <div class="resize" id="resize-t"></div>
-    <div class="resize" id="resize-r"></div>
-    <div class="resize" id="resize-b"></div>
-    <div class="resize" id="resize-l"></div>
-    <div class="resize" id="resize-tr"></div>
-    <div class="resize" id="resize-tl"></div>
-    <div class="resize" id="resize-br"></div>
-    <div class="resize" id="resize-bl"></div>
+    <button type="button" id="popover-confirm">确定</button>
+    <button type="button" id="popover-cancel">取消</button>
   </div>
 </div>
+<form id="popover2">
+  <h5>这也是一个浮出层</h5>
+  <p>这个浮出层功能比较简单，不能拖动，不能缩放，没有遮蔽层</p>
+  <label>Width: <input id="popover2-width" type="number" required max="800" min="300"></label>
+  <label>Height: <input id="popover2-height" type="number" required max="400" min="200"></label>
+  <button type="button" id="popover2-dragable">点我可以拖动</button>
+  <button type="submit" id="popover2-confirm">确定</button>
+  <button type="button" id="popover2-cancel">取消</button>
+</form>
 <script src="Task 06.js"></script>
 </body>
 </html>
