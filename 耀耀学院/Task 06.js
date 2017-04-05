@@ -2,7 +2,7 @@
 
 var task06 = {};
 
-var popover = function() {
+var main = function() {
   // 静态变量
   var popover = document.querySelector(".popover"), //浮出层
       mask = document.querySelector("#mask"), //遮避层
@@ -107,7 +107,7 @@ var popover = function() {
       dragable.parentNode.removeChild(dragable);
       p.innerHTML = "这个浮出层功能比较简单，不能缩放，没有遮蔽层，但现在可以拖动了";
       dragable = trigger = p = null;
-    })
+    });
     //设置为浮动层
     task06.setPopover(target);
     //再次点击时不用以上步骤
@@ -140,7 +140,7 @@ var popover = function() {
 /*************************模块功能************************/
 /********************弹出层的弹出与隐藏********************/
 /*****************拖拽窗口以及改变窗口大小******************/
-/*******************************************************/
+/*************************task06************************/
 (function(interface) {
   //设置接口
   /*
@@ -460,4 +460,4 @@ var popover = function() {
     
 })(task06);
     
-popover.initial();
+main.initial();
