@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<meta charset="utf-8">
+<head>
+<title>Task7 By MT</title>
+<style>
+body {
+  display: flex;
+  margin-top: 20px;
+  flex-direction: column;
+  align-items: center;
+}
+table {
+  margin-top: 20px;
+  border-collapse: collapse;  
+}
+thead {
+  color: #fff;
+  background-color: #5b5b5b;
+}
+th, td {
+  box-sizing: border-box;
+  width: 150px;
+  padding-left: 60px;
+  line-height: 40px;
+  text-align: left;
+  border: #d6d6d6 1px solid;
+}
+th p {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+th .arrow {  vertical-align: -4px; }
+th span {  
+  display: block;
+  margin-left: 20px;
+  font-size: 10px;
+  line-height: 1.2;
+}
+.sort {
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+<form>
+  <label>学生数目：
+  <input type="number" id="num" required max="40" min="3"/></label>
+  <button type="submit" id="fill">点我随机生成表格数据</button>
+</form>
+<table>
+  <thead>
+    <tr>
+      <th>姓名</th>
+      <th class="sort" id="chinese">
+        <p>语文</p>
+        <p class="arrow">
+          <span>&#9650;</span>
+          <span>&#9660;</span>
+        </p>
+      </th>
+      <th class="sort" id="maths">
+        <p>数学</p>
+        <p class="arrow">
+          <span>&#9650;</span>
+          <span>&#9660;</span>
+        </p>
+      </th>
+      <th class="sort" id="english">
+        <p>英语</p>
+        <p class="arrow">
+          <span>&#9650;</span>
+          <span>&#9660;</span>
+        </p>
+      </th>
+      <th class="sort" id="total">
+        <p>总分</p>
+        <p class="arrow">
+          <span>&#9650;</span>
+          <span>&#9660;</span>
+        </p>
+      </th>
+    </tr>
+  </thead>
+</table>
+<script src="Task 07.js"></script>
+</body>
+</html>
