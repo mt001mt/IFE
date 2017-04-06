@@ -127,7 +127,7 @@ var main = {};
           order = false;
       
       if (mark !== -1) {
-        arrowArray[mark].removeAttribute("style");
+        arrowArray[mark].style.removeProperty("color");
       }
       if (mark === newMark) {
         mark--;
@@ -135,7 +135,7 @@ var main = {};
       } else {
         mark = newMark;
       }
-      arrowArray[mark].setAttribute("style", "color: #aaa;");
+      arrowArray[mark].style.setProperty("color", "#aaa");
       
       return order;
     };
@@ -221,7 +221,6 @@ var main = {};
     table.replaceChild(tbody, table.querySelector("tbody"));
   }
   
-  
   /*
    *根据参数，填写表格内容
    *param1 table HTMLTableElement 需要的填写内容的表格
@@ -233,39 +232,30 @@ var main = {};
   function fill(table, data) {
     var dataJS = JSON.parse(data).score,
         increase = Number(dataJS[0]),
-        tbody = document.createElement("tbody"),
+        tbody = "",
         tbodyArray = table.querySelectorAll("tbody"),
-        tr,
-        td,
         i, j,
         total = 0, //用来计算总分
         length = tbodyArray.length;
-    //删除多余的tbody，只保留一个
+    //删除多余的tbody，或添加tbody，只保留一个
     for (i = 1; i < length; i++) {
       table.removeChild(tbodyArray[i]);
     }
     if (length === 0) {
-      table.appendChild(tbody);
+      table.appendChild(document.createElement("tbody"));
     }
     //根据data，生成表格数据
     for (i = 1, length = dataJS.length; i < length;) {
-      tr = document.createElement("tr");
-      td = document.createElement("td");
-      td.innerText = dataJS[i++];
-      tr.appendChild(td);
+      tbody += "<tr><td>" + dataJS[i++] + "</td>";
       for (j = 0; j < increase; j++) {
-        td = document.createElement("td");
-        td.innerText = dataJS[i];
-        tr.appendChild(td);
+        tbody += "<td>" + dataJS[i] + "</td>";
         total += Number(dataJS[i++]);
       }
-      td = document.createElement("td");
-      td.innerText = total;
-      tr.appendChild(td);
+      tbody += "<td>" + total + "</td></tr>";
       total = 0;
-      tbody.appendChild(tr);
     }
-    table.replaceChild(tbody, table.querySelector("tbody"));
+    
+    table.querySelector("tbody").innerHTML = tbody;
   }
   
 })(task07);
