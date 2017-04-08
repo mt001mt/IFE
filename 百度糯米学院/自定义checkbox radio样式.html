@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>自定义checkbox， radio样式 By MT</title>
+<style>
+body {
+  padding-top: 50px;
+  padding-left: 45%;
+}
+input { display: none;}
+.user-radio,
+.user-checkbox {
+  display: inline-block;
+  height: 12px;
+  width: 12px;
+  margin-right: 5px;
+  margin-left: 10px;
+  font-size: 0;
+  box-sizing: border-box;
+}
+/*伪元素方式*/
+.pseudo .user-radio {
+  border-radius: 50%;
+  border: #aaa 1px solid;
+}
+.pseudo input[type="radio"]:checked+.user-radio {  border-color: #f00;}
+.pseudo input[type="radio"]:checked+.user-radio:after {
+  content: "";
+  display: block;
+  margin-top: 3px;
+  margin-left: 3px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: #f00;
+}
+.pseudo .user-checkbox {  border: #aaa 1px solid;}
+.pseudo input[type="checkbox"]:checked+.user-checkbox {  border-color: #f00;}
+.pseudo input[type="checkbox"]:checked+.user-checkbox:after {
+  content: "\2714";
+  line-height: 12px;
+  font-size: 12px;
+  color: #f00;
+}
+
+/*雪碧图方式*/
+.sprite .user-radio {
+  background-image: url(sprite.png);
+  background-size: cover;
+}
+.sprite .user-checkbox {
+  background-image: url(sprite.png);
+  background-size: cover;
+  background-position: -24px center;
+}
+.sprite input[type="radio"]:checked+.user-radio {  background-position: -12px center;}
+.sprite input[type="checkbox"]:checked+.user-checkbox {  background-position: -36px center;} 
+</style>
+</head>
+
+<body>
+<form class="pseudo">
+  <legend>伪元素</legend>
+  <input type="radio" name="usertype1" id="radio1" />
+  <label class="user-radio" for="radio1"></label><!--
+--><label for="radio1">选项一</label>
+  <input type="radio" name="usertype1" id="radio2" />
+  <label class="user-radio" for="radio2"></label><!--
+--><label for="radio2">选项二</label>
+  <br />
+  <input type="checkbox" name="usertype2" id="checkbox1" />
+  <label class="user-checkbox" for="checkbox1"></label><!--
+--><label for="checkbox1">选项A</label>
+  <input type="checkbox" name="usertype3" id="checkbox2" />
+  <label class="user-checkbox" for="checkbox2"></label><!--
+--><label for="checkbox2">选项B</label>
+</form>
+<form class="sprite">
+  <legend>雪碧图</legend>
+  <input type="radio" name="usertype1" id="radio3" />
+  <label class="user-radio" for="radio3"></label><!--
+--><label for="radio3">选项一</label>
+  <input type="radio" name="usertype1" id="radio4" />
+  <label class="user-radio" for="radio4"></label><!--
+--><label for="radio4">选项二</label>
+  <br />
+  <input type="checkbox" name="usertype2" id="checkbox3" />
+  <label class="user-checkbox" for="checkbox3"></label><!--
+--><label for="checkbox3">选项A</label>
+  <input type="checkbox" name="usertype3" id="checkbox4" />
+  <label class="user-checkbox" for="checkbox4"></label><!--
+--><label for="checkbox4">选项B</label>
+</form>
+</body>
+</html>
