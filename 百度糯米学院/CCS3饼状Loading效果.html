@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CCS3饼状Loading效果 By MT</title>
+</head>
+<style>
+.loading {
+  position: absolute;
+  left: calc(50vw - 30px);
+  top: calc(50vh - 30px);
+}
+.ring {
+  width: 26px;
+  height: 26px;
+  border: 2px solid #f39;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: ring-rotation 2s linear infinite;
+}  
+.circle {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #f39;
+}
+.circle:after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 10px;
+  height: 20px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  background-color: #eae;
+}
+.left {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 10px;
+  height: 20px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  background-color: #f39;
+  transform-origin: right center;
+  animation: left-rotation 4s linear infinite;
+  z-index: 2;
+}
+.right {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 10px;
+  height: 20px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  background-color: #eae;
+  transform-origin: right center;
+  animation: right-rotation 4s linear infinite, right-z 4s steps(1, end) infinite;
+}
+
+@keyframes ring-rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+@keyframes left-rotation  {
+  0% {    transform: rotate(0deg);}
+  25% {    transform: rotate(-180deg);}
+  50% {    transform: rotate(-180deg);}
+  75% {    transform: rotate(-360deg);}
+  100% {    transform: rotate(-360deg);}
+}
+@keyframes right-rotation  {
+  0% {    transform: rotate(0deg);}
+  25% {    transform: rotate(0deg);}
+  50% {    transform: rotate(-180deg);}
+  75% {    transform: rotate(-180deg);}
+  100% {    transform: rotate(-360deg);}
+}
+@keyframes right-z   {
+  0% {    z-index: 1;}
+  25% {    z-index: 3;}
+  75% {    z-index: 1;}
+  100% {    z-index: 1;}
+}
+</style>
+<body>
+<div class="loading">
+  <div class="ring"></div>
+  <div class="circle"></div>
+  <div class="left"></div>
+  <div class="right"></div>
+</div>
+</body>
+</html>
