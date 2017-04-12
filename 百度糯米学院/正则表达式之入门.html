@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>正则表达式之入门 By MT</title>
+</head>
+
+<body>
+<label>请输入电话号码 <input type="tel" id="tel" /></label>
+<p id="p1" style="width: 500px; height: 30px;"></p>
+<button type="button" id="btn1">检验</button>
+<br />
+<br />
+<label>请输入字符串 <input type="text" id="string" /></label>
+<p id="p2" style="width: 500px; height: 30px;"></p>
+<button type="button" id="btn2">检验</button>
+<script>
+document.getElementById("btn1").addEventListener("click", function() {
+  var tel = document.getElementById("tel").value,
+      p = document.getElementById("p1");
+  console.log(p);
+  if (tel.match(/^1\d{10}$/)) {
+    p.innerHTML = "电话号码格式正确";
+    return;
+  }
+  p.innerHTML = "电话号码格式不正确";
+  return;
+});
+document.getElementById("btn2").addEventListener("click", function() {
+  var string = document.getElementById("string").value,
+      p = document.getElementById("p2");
+  if (string.match(/(?:^|\s)([a-zA-Z]+(?:-[a-zA-Z]+)*(?=\s|$))\s+\1/)) {
+    p.innerHTML = "有相邻重复单词";
+    return;
+  }
+  p.innerHTML = "没有相邻重复单词";
+  return;
+});
+</script>
+</body>
+</html>
