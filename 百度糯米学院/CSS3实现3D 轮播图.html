@@ -13,6 +13,11 @@
   perspective: 150px;
   overflow: hidden;
 }
+.carousel3d-rotater{
+  transform-origin: 50% 50% -600px;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+}
 .carousel3d-leftarray,
 .carousel3d-rightarray {
   position: absolute;
@@ -36,11 +41,6 @@
   margin-left: 100px;
   margin-right: 100px;
   transform-origin: 50% 50% -600px;
-  transition: transform 1s;
-}
-.carousel3d-item1 {
-  transform: rotateY(120deg);
-  transform-origin: 50% 50% 0px;
 }
 .carousel3d-item--1 {  transform: rotateY(0deg); }
 .carousel3d-item--2 {  transform: rotateY(60deg); }
@@ -48,7 +48,7 @@
 .carousel3d-item--4 {  transform: rotateY(180deg); }
 .carousel3d-item--5 {  transform: rotateY(240deg); }
 .carousel3d-item--6 {  transform: rotateY(300deg); }
-img {  
+img {
   width: 310px;
   height: 220px;
   vertical-align: middle;
@@ -60,23 +60,25 @@ img {
 <div class="carousel3d">
   <div class="carousel3d-leftarray">&lt;</div>
   <div class="carousel3d-rightarray">&gt;</div>
-  <div class="carousel3d-item carousel3d-item--1">
-    <img src="carousel1.jpg" alt="图片" />
-  </div>
-  <div class="carousel3d-item carousel3d-item--2">
-    <img src="carousel4.jpg" alt="图片" />
-  </div>
-  <div class="carousel3d-item carousel3d-item--3">
-    <img src="carousel3.jpg" alt="图片" />
-  </div>
-  <div class="carousel3d-item carousel3d-item--4">
-    <img src="carousel5.jpg" alt="图片" />
-  </div>
-  <div class="carousel3d-item carousel3d-item--5">
-    <img src="carousel2.jpg" alt="图片" />
-  </div>
-  <div class="carousel3d-item carousel3d-item--6">
-    <img src="carousel6.jpg" alt="图片" />
+  <div class="carousel3d-rotater">
+    <div class="carousel3d-item carousel3d-item--1">
+      <img src="carousel1.jpg" alt="图片" />
+    </div>
+    <div class="carousel3d-item carousel3d-item--2">
+      <img src="carousel4.jpg" alt="图片" />
+    </div>
+    <div class="carousel3d-item carousel3d-item--3">
+      <img src="carousel3.jpg" alt="图片" />
+    </div>
+    <div class="carousel3d-item carousel3d-item--4">
+      <img src="carousel5.jpg" alt="图片" />
+    </div>
+    <div class="carousel3d-item carousel3d-item--5">
+      <img src="carousel2.jpg" alt="图片" />
+    </div>
+    <div class="carousel3d-item carousel3d-item--6">
+      <img src="carousel6.jpg" alt="图片" />
+    </div>
   </div>
 </div>
 
@@ -89,10 +91,9 @@ img {
 $(document).ready(function() {
   //获取需要旋转的容器
   var interval = 2000, //轮播间隔
-      carousel3dItem = $(".carousel3d-item"), //轮播图片
-      n = carousel3dItem.length, //轮播图片的数量
-      count = 0, //现在转过的角度/(360°/n)，取值为-1~6
-      angle = -360/n, //轮播图片之间的夹角
+      carousel3dRotater = $(".carousel3d-rotater"), //轮播图片
+      totalAngel = 0, //现在转过的角度
+      angel = 360 / $(".carousel3d-item").length, //每次应该转动的角度
       timeout; //记录setTimeout
 
   /*
@@ -102,36 +103,25 @@ $(document).ready(function() {
    */
   function rotate() {
     //如果已经转过一圈了，需重置回零
-    if (count === n) {
+    if (totalAngel <= -359) {
       reset();
       return;
     }
-    var i = count++ + 1;
     //改变轮播图片的转动角度
-    carousel3dItem.each(function(index) {
-      $(this).css("transform", "rotateY(" + i-- * angle + "deg)");
-      $(this).css("z-index", calZIndex(index, 1));
-    });
+    totalAngel -= angel;
+    carousel3dRotater.css("transform", "rotateY(" + totalAngel + "deg)");
     //设置下一次转动
     timeout = setTimeout(rotate, interval);
   }
   /*
-   *将每个轮播图片反向转动一个角度
+   *将每个轮播图片转动一个反向角度
    *param none
    *return undefined
    */
   function rotateReverse() {
-    //如果count为-1，需重置为5
-    if (count === -1) {
-      resetReverse();
-      return;
-    }
-    var i = count-- - 1;
     //改变轮播图片的转动角度
-    carousel3dItem.each(function(index) {
-      $(this).css("transform", "rotateY(" + i-- * angle + "deg)");
-      $(this).css("z-index", calZIndex(index, -1));
-    });
+    totalAngel += angel;
+    carousel3dRotater.css("transform", "rotateY(" + totalAngel + "deg)");
     //设置下一次转动
     timeout = setTimeout(rotate, interval);
   }
@@ -141,46 +131,17 @@ $(document).ready(function() {
    *return undefined
    */
   function reset() {
-    var i = 0;
-    count = 0;
+    totalAngel = 0;
     //转动角度重置，并删除trasition
-    carousel3dItem.each(function() {
-      $(this).css({
-        "transform": "rotateY(" + i-- * angle + "deg)",
-        "transition-property": "none"
-      });
+    carousel3dRotater.css({
+      "transform": "rotateY(" + totalAngel + "deg)",
+      "transition-property": "none"
     });
     //待重置后，重新添加trasition
     setTimeout(function() {
-      carousel3dItem.each(function() {
-        $(this).css("transition-property", "transform");
-      });
+      carousel3dRotater.css("transition-property", "transform");
       //设置下一次转动
       rotate();
-    }, 15);
-  }
-  /*
-   *当轮播图片转过-360°时，将转动角度重置
-   *param none
-   *return undefined
-   */
-  function resetReverse() {
-    var i = 5;
-    count = 5;
-    //转动角度重置，并删除trasition
-    carousel3dItem.each(function() {
-      $(this).css({
-        "transform": "rotateY(" + i-- * angle + "deg)",
-        "transition-property": "none"
-      });
-    });
-    //待重置后，重新添加trasition
-    setTimeout(function() {
-      carousel3dItem.each(function() {
-        $(this).css("transition-property", "transform");
-      });
-      //设置下一次转动
-      rotateReverse();
     }, 15);
   }
   /*
@@ -205,32 +166,8 @@ $(document).ready(function() {
     }
     rotateReverse();
   }
-  /*
-   *根据当前的count以及图片在carousel3dItem中的数字索引，求出该图片的z-index
-   *index===count的图片的z-index值取n，其两边图片的取n-1，再两边的取n-2，依此类推
-   *返回的值为 (count对应的z-index) * 2 + count - (direction) * 1对应的z-index
-   *param1 index Number 图片在carousel3dItem中的数字索引
-   *param2 direction Number 1 逆时针转动 -1 顺时针转动 0 用于初始化
-   *                        可无 取默认值1
-   *return Number 求得的该图片的z-index
-   */
-  function calZIndex(index, direction) {
-    //参数处理
-    direction = direction || 0;
-    var countLocal = count;
-    return ZIndex(countLocal) * 2 + ZIndex(countLocal - 1 * direction);
-    //计算第index图片和当前第一张图片之间的最短距离
-    function ZIndex(countLocal) {
-      var delta = Math.abs(index - countLocal);
-      return n - Math.min(delta, n - delta);
-    }
-  }
   
   //以下是初始化
-  ////给图片设置初始z-index
-  carousel3dItem.each(function(index) {
-    $(this).css("z-index", calZIndex(index));
-  });
   timeout = setTimeout(rotate, interval);
   $(".carousel3d").on("click", ".carousel3d-leftarray", leftClick);
   $(".carousel3d").on("click", ".carousel3d-rightarray", rightClick);
